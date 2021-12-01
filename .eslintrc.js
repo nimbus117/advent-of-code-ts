@@ -8,11 +8,10 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:node/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
-  plugins: ['prettier', '@typescript-eslint', 'node'],
+  plugins: ['prettier', '@typescript-eslint'],
   rules: {
     'prettier/prettier': 'warn',
   },
