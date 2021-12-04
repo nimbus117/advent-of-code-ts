@@ -3,6 +3,9 @@ export const parseStrings = (input: string) => input.split('\n').slice(0, -1);
 export const parseNumbers = (input: string) =>
   parseStrings(input).map((x) => parseInt(x));
 
+export const parseArrayOfNumbers = (input: string) =>
+  parseStrings(input).map((x) => x.split('').map((y) => parseInt(y)));
+
 const reduceNumbers =
   (func: (a: number, b: number) => number) =>
   (numbers: number[] | { [key: string]: number }) =>
