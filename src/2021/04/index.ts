@@ -1,4 +1,4 @@
-import { sum, transpose } from '../../shared';
+import { sum, transpose, last } from '../../shared';
 
 type Board = number[][];
 type Results = { left: Board[]; won: Board[] };
@@ -29,7 +29,7 @@ const hasBoardWon = (board: Board, drawnNumbers: number[]) =>
 
 const boardScore = (board: Board, drawnNumbers: number[]) =>
   sum(board.flat().filter((number) => !drawnNumbers.includes(number))) *
-  drawnNumbers[drawnNumbers.length - 1];
+  last(drawnNumbers);
 
 const getWin = (input: string, condition: (results: Results) => boolean) => {
   const { boards, numbers } = parseBingo(input);
