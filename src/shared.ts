@@ -13,3 +13,6 @@ const reduceNumbers =
 
 export const sum = reduceNumbers((a, b) => a + b);
 export const multiply = reduceNumbers((a, b) => a * b);
+
+export const transpose = (array: any[][]) =>
+  array[0].map((col, i) => array.map((row) => row[i]));
