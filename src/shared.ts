@@ -24,6 +24,6 @@ export const transpose = <T>(array: T[][]) =>
 export const last = <T>(array: T[]) => array[array.length - 1];
 
 export const range = (start: number, end: number) =>
-  [...Array(end > start ? end - start + 1 : start - end + 1).keys()].map(
-    (i) => i + start
+  [...Array(Math.abs(start - end) + 1).keys()].map((i) =>
+    end > start ? i + start : start - i
   );
