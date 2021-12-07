@@ -1,7 +1,0 @@
-export function* range(start, end) {
-  for (let i = start; start <= end; i++) {
-    yield i;
-  }
-}
-
-console.log([...range(1, 5)]);
