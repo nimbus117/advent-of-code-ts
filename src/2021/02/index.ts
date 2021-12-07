@@ -1,11 +1,11 @@
-import { parseStrings, multiply } from '../../shared';
+import { parseLinesOfStrings, multiply } from '../../shared';
 
 type Command = [string, number];
 type Position = { x: number; y: number };
 type PositionWithAim = Position & { aim: number };
 
 const parse = (input: string) =>
-  parseStrings(input).map((x): Command => {
+  parseLinesOfStrings(input).map((x): Command => {
     const [direction, distance] = x.split(' ');
     return [direction, parseInt(distance)];
   });

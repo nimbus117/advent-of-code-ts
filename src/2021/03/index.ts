@@ -1,4 +1,4 @@
-import { parseArrayOfNumbers } from '../../shared';
+import { parseArraysOfNumbers } from '../../shared';
 
 const bitsToInt = (input: number[]) => parseInt(input.join(''), 2);
 
@@ -27,13 +27,13 @@ const getRating = (
 };
 
 export const part1 = (input: string) => {
-  const gamma = mostCommonBits(parseArrayOfNumbers(input));
+  const gamma = mostCommonBits(parseArraysOfNumbers(input));
   const epsilon = gamma.map((x) => (x === 0 ? 1 : 0));
   return bitsToInt(gamma) * bitsToInt(epsilon);
 };
 
 export const part2 = (input: string) => {
-  const parsed = parseArrayOfNumbers(input);
+  const parsed = parseArraysOfNumbers(input);
   const oxygen = getRating(parsed, 1);
   const co2 = getRating(parsed, 0);
   return bitsToInt(oxygen) * bitsToInt(co2);

@@ -1,9 +1,9 @@
-import { parseStrings, range } from '../../shared';
+import { parseLinesOfStrings, range } from '../../shared';
 
 type Line = [[number, number], [number, number]];
 
 const parseLines = (input: string) =>
-  parseStrings(input).map((line) =>
+  parseLinesOfStrings(input).map((line) =>
     line.split(' -> ').map((point) => point.split(',').map((p) => parseInt(p)))
   ) as Line[];
 

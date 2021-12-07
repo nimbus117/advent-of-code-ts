@@ -1,10 +1,14 @@
-export const parseStrings = (input: string) => input.split('\n').slice(0, -1);
+export const parseLinesOfStrings = (input: string): string[] =>
+  input.split('\n').slice(0, -1);
 
-export const parseNumbers = (input: string) =>
-  parseStrings(input).map((x) => parseInt(x));
+export const parseLinesOfNumbers = (input: string): number[] =>
+  parseLinesOfStrings(input).map((x) => parseInt(x));
 
-export const parseArrayOfNumbers = (input: string) =>
-  parseStrings(input).map((x) => x.split('').map((y) => parseInt(y)));
+export const parseArraysOfNumbers = (input: string): number[][] =>
+  parseLinesOfStrings(input).map((x) => x.split('').map(Number));
+
+export const parseLineOfNumbers = (input: string) =>
+  parseLinesOfStrings(input)[0].split(',').map(Number);
 
 const reduceNumbers =
   (func: (a: number, b: number) => number) =>
