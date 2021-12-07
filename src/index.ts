@@ -13,9 +13,9 @@ const input = readFileSync(`./src/${year}/${day}/input`, 'utf8');
   const solution = await import(`./${year}/${day}`);
 
   parts.forEach((part) => {
-    const start = new Date().getMilliseconds();
+    const start = new Date().valueOf();
     solution[part] && console.log(`${part}:`, solution[part](input));
-    const end = new Date().getMilliseconds();
+    const end = new Date().valueOf();
     console.log(`${end - start}ms\n`);
   });
 })();
