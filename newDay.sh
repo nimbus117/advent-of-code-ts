@@ -20,4 +20,4 @@ mkdir -p $path
 
 touch $index $test $input
 
-vim -p $index $test $input
+echo -ne '\ekvim\e\\'; vim -p $index $test $input
