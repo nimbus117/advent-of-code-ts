@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ -z $1 ] && [ -z $2 ]; then
+if [ -z $1 ] || [ -z $2 ]; then
   echo "Expected year and day arguments (./newDay.sh 2021 01)"
   exit 1
 fi
