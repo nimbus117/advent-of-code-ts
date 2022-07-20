@@ -1,9 +1,14 @@
-import { parseLineOfNumbers, range, sum, last } from '../../shared';
+import {
+  parseCommaSeparatedLineOfNumbers,
+  range,
+  sum,
+  last,
+} from '../../shared';
 
 type Cost = (c: number, p: number) => number;
 
 const cheapestPosition = (input: string, cost: Cost) => {
-  const current = parseLineOfNumbers(input).sort();
+  const current = parseCommaSeparatedLineOfNumbers(input).sort();
   const possible = range(current[0], last(current));
   return Math.min(...possible.map((p) => sum(current.map((c) => cost(c, p)))));
 };

@@ -1,4 +1,4 @@
-import { last, parseLinesOfStrings } from '../../shared';
+import { MapWithDefault, last, parseLinesOfStrings } from '../../shared';
 
 const pairs = new Map([
   [')', '('],
@@ -7,14 +7,14 @@ const pairs = new Map([
   ['>', '<'],
 ]);
 
-const p1Score = new Map([
+const p1Score = new MapWithDefault(0, [
   [')', 3],
   [']', 57],
   ['}', 1197],
   ['>', 25137],
 ]);
 
-const p2Score = new Map([
+const p2Score = new MapWithDefault(0, [
   ['(', 1],
   ['{', 3],
   ['[', 2],
@@ -26,8 +26,8 @@ export const part1 = (input: string) =>
     .reduce<string[]>((acc, cur) => {
       const openingChars = [];
       for (const char of cur) {
-        if (pairs.has(char)) {
-          const opening = pairs.get(char);
+        const opening = pairs.get(char);
+        if (opening) {
           if (last(openingChars) === opening) openingChars.pop();
           else {
             acc.push(char);
@@ -38,7 +38,6 @@ export const part1 = (input: string) =>
       return acc;
     }, [])
     .map((char) => p1Score.get(char))
-    .filter((x): x is number => !!x)
     .reduce((a, b) => a + b);
 
 export const part2 = (input: string) => {
@@ -46,8 +45,8 @@ export const part2 = (input: string) => {
     .map((line) => {
       const openingChars = [];
       for (const char of line.split('')) {
-        if (pairs.has(char)) {
-          const opening = pairs.get(char);
+        const opening = pairs.get(char);
+        if (opening) {
           if (last(openingChars) === opening) openingChars.pop();
           else {
             return 0;
@@ -56,7 +55,7 @@ export const part2 = (input: string) => {
       }
       return openingChars
         .reverse()
-        .reduce((acc, cur) => acc * 5 + (p2Score.get(cur) || 0), 0);
+        .reduce((acc, cur) => acc * 5 + p2Score.get(cur), 0);
     }, [])
     .filter(Boolean)
     .sort((a, b) => a - b);

@@ -1,4 +1,4 @@
-import { parseLinesOfStrings, multiply } from '../../shared';
+import { parseLinesOfStrings, multiply, pipe, omit } from '../../shared';
 
 type Command = [string, number];
 type Position = { x: number; y: number };
@@ -32,9 +32,18 @@ const newPosition2 = (p: PositionWithAim, c: Command) => {
 };
 
 export const part1 = (input: string) =>
-  multiply(parse(input).reduce(newPosition1, { x: 0, y: 0 }));
+  pipe(input)
+    .$(parse)
+    .$((c) => c.reduce(newPosition1, { x: 0, y: 0 }))
+    .$(Object.values)
+    .$(multiply)
+    .value();
 
-export const part2 = (input: string) => {
-  const result = parse(input).reduce(newPosition2, { aim: 0, x: 0, y: 0 });
-  return multiply([result.x, result.y]);
-};
+export const part2 = (input: string) =>
+  pipe(input)
+    .$(parse)
+    .$((c) => c.reduce(newPosition2, { aim: 0, x: 0, y: 0 }))
+    .$((p) => omit(p, ['aim']))
+    .$(Object.values)
+    .$(multiply)
+    .value();

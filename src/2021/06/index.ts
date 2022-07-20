@@ -1,4 +1,4 @@
-import { parseLineOfNumbers, range, sum } from '../../shared';
+import { parseCommaSeparatedLineOfNumbers, range, sum } from '../../shared';
 
 const simulateGrowth = (fish: number[], days: number): number[] => {
   const growth = fish.map((f) => (f > 0 ? f - 1 : [6, 8])).flat();
@@ -16,7 +16,7 @@ const calculateGrowth = (fish: number[], days: number) => {
 };
 
 export const part1 = (input: string) =>
-  simulateGrowth(parseLineOfNumbers(input), 80).length;
+  simulateGrowth(parseCommaSeparatedLineOfNumbers(input), 80).length;
 
 export const part2 = (input: string) =>
-  sum(calculateGrowth(parseLineOfNumbers(input), 256));
+  sum(calculateGrowth(parseCommaSeparatedLineOfNumbers(input), 256));
