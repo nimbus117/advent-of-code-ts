@@ -1,4 +1,3 @@
-// delete as appropriate
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
@@ -15,4 +14,14 @@ module.exports = {
   rules: {
     'prettier/prettier': 'warn',
   },
+  overrides: [
+    {
+      files: ['src/**/*.test.ts'],
+      plugins: ['jest'],
+      extends: ['plugin:jest/recommended'],
+      rules: {
+        'jest/consistent-test-it': ['error', { fn: 'it' }],
+      },
+    },
+  ],
 };
