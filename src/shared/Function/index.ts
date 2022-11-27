@@ -1,16 +1,16 @@
 type Pipe<TIn> = {
-  $<TOut>(fn: (input: TIn) => TOut): Pipe<TOut>;
+  _<TOut>(fn: (input: TIn) => TOut): Pipe<TOut>;
 
-  value: () => TIn;
+  $: () => TIn;
 };
 
 export const pipe = <TIn>(input: TIn): Pipe<TIn> => {
   return {
-    $: <TOut>(fn: (input: TIn) => TOut): Pipe<TOut> => {
+    _: <TOut>(fn: (input: TIn) => TOut): Pipe<TOut> => {
       return pipe(fn(input));
     },
 
-    value: () => input,
+    $: () => input,
   };
 };
 

@@ -1,18 +1,23 @@
-import { parseArraysOfNumbers } from '../../shared';
+import { map, reduceI, parseArraysOfNumbers, pipe } from '../../shared';
+
+const getGammaBits = (input: number[][]) => {
+  const countSetBits = reduceI(
+    (acc: number[], cur: number[]) => cur.map((x, i) => x + acc[i]),
+    new Array(input[0].length).fill(0)
+  );
+
+  const toGamaBit = (x: number) => (x > input.length / 2 ? 1 : 0);
+
+  return pipe(input)._(countSetBits)._(map(toGamaBit)).$();
+};
+
+const flipBit = (bit: number) => 1 - bit;
 
 const bitsToInt = (input: number[]) => parseInt(input.join(''), 2);
 
-const mostCommonBits = (input: number[][]) =>
-  input
-    .reduce(
-      (acc, cur) => cur.map((x, i) => x + acc[i]),
-      new Array(input[0].length).fill(0)
-    )
-    .map((x) => (x > input.length / 2 ? 1 : 0));
-
 const getRating = (
   input: number[][],
-  mostCommon: 0 | 1,
+  mostCommon: number,
   index = 0
 ): number[] => {
   const commonBitAtIndex =
@@ -21,14 +26,15 @@ const getRating = (
       : mostCommon ^ 1;
 
   const filteredInput = input.filter((x) => x[index] === commonBitAtIndex);
+
   return filteredInput.length > 1
     ? getRating(filteredInput, mostCommon, index + 1)
     : filteredInput[0];
 };
 
 export const part1 = (input: string) => {
-  const gamma = mostCommonBits(parseArraysOfNumbers(input));
-  const epsilon = gamma.map((x) => (x === 0 ? 1 : 0));
+  const gamma = pipe(input)._(parseArraysOfNumbers)._(getGammaBits).$();
+  const epsilon = gamma.map(flipBit);
   return bitsToInt(gamma) * bitsToInt(epsilon);
 };
 

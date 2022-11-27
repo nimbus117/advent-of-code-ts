@@ -1,4 +1,15 @@
-import { parseLinesOfStrings, range } from '../../shared';
+import {
+  parseLinesOfStrings,
+  range,
+  pipe,
+  filter,
+  map,
+  reduceI,
+  length,
+  MapWithDefault,
+  flat,
+  fromIterable,
+} from '../../shared';
 
 type Line = [[number, number], [number, number]];
 
@@ -7,7 +18,10 @@ const parseLines = (input: string) =>
     line.split(' -> ').map((point) => point.split(',').map((p) => parseInt(p)))
   ) as Line[];
 
-const getLinePoints = ([[x1, y1], [x2, y2]]: Line) => {
+const isHorizontalOrVertical = ([[x1, y1], [x2, y2]]: Line) =>
+  x1 === x2 || y1 === y2;
+
+const mapLinePoints = map(([[x1, y1], [x2, y2]]: Line) => {
   const isHorizontal = x1 === x2;
   const slope = isHorizontal ? 0 : (y2 - y1) / (x2 - x1);
   const [a, b, c, d] = isHorizontal ? [y1, y2, x1, x2] : [x1, x2, y1, y2];
@@ -17,23 +31,32 @@ const getLinePoints = ([[x1, y1], [x2, y2]]: Line) => {
     const point = [increasing[2] + slope * i, r];
     return isHorizontal ? point.reverse() : point;
   });
+});
+
+const countIntersections = (lines: Line[]) => {
+  const count = (intersections: MapWithDefault<string, number>) =>
+    reduceI((acc, cur) => {
+      const key = `${cur}`;
+      acc.set(key, acc.get(key) + 1);
+      return acc;
+    }, intersections);
+
+  return pipe(lines)
+    ._(mapLinePoints)
+    ._(flat())
+    ._(count(new MapWithDefault(0)))
+    ._(fromIterable)
+    ._(filter(([, v]) => v > 1))
+    ._(length)
+    .$();
 };
 
-const countIntersections = (lines: Line[]) =>
-  [
-    ...lines
-      .map(getLinePoints)
-      .flat()
-      .reduce((acc, cur) => {
-        const key = `${cur}`;
-        acc.has(key) ? acc.set(key, acc.get(key) + 1) : acc.set(key, 1);
-        return acc;
-      }, new Map()),
-  ].filter(([, v]) => v > 1).length;
-
 export const part1 = (input: string) =>
-  countIntersections(
-    parseLines(input).filter(([[x1, y1], [x2, y2]]) => x1 === x2 || y1 === y2)
-  );
+  pipe(input)
+    ._(parseLines)
+    ._(filter(isHorizontalOrVertical))
+    ._(countIntersections)
+    .$();
 
-export const part2 = (input: string) => countIntersections(parseLines(input));
+export const part2 = (input: string) =>
+  pipe(input)._(parseLines)._(countIntersections).$();

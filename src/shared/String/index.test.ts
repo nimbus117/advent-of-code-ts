@@ -2,14 +2,14 @@ import {
   isCapitalized,
   isLowerCase,
   isUpperCase,
-  lengthAtLeast,
-  splitAt,
+  isLengthAtLeast,
+  split,
   trim,
   trimEnd,
   trimStart,
 } from '.';
 
-describe('shared', () => {
+describe('shared.String', () => {
   describe('isCapitalized', () => {
     it('returns true when only the first character in the string is capitalized', () => {
       expect(isCapitalized('Bob')).toBe(true);
@@ -44,22 +44,32 @@ describe('shared', () => {
     });
   });
 
-  describe('lengthAtLeast', () => {
+  describe('isLengthAtLeast', () => {
     it('returns a function that itself will return true if the string given is at least 5 characters long', () => {
-      const isLengthAtLeast5 = lengthAtLeast(5);
+      const isLengthAtLeast5 = isLengthAtLeast(5);
       expect(isLengthAtLeast5('xxxxx')).toBe(true);
       expect(isLengthAtLeast5('xxxxxx')).toBe(true);
     });
 
     it('returns a function that itself will return false if the string given is less than 5 characters long', () => {
-      const isLengthAtLeast5 = lengthAtLeast(5);
+      const isLengthAtLeast5 = isLengthAtLeast(5);
       expect(isLengthAtLeast5('xxxx')).toBe(false);
     });
   });
 
-  describe('splitAt', () => {
+  describe('split', () => {
     it('returns a function that splits a string at the c character', () => {
-      const splitAtC = splitAt('c');
+      const splitAtC = split('c');
+      expect(splitAtC('abcabcab')).toEqual(['ab', 'ab', 'ab']);
+    });
+
+    it('returns a function that splits a string at the c character and limits the number of elements returned to 2', () => {
+      const splitAtC = split('c', 2);
+      expect(splitAtC('abcabcab')).toEqual(['ab', 'ab']);
+    });
+
+    it('returns a function that splits a string at the given regular expression', () => {
+      const splitAtC = split(/c/);
       expect(splitAtC('abcabcab')).toEqual(['ab', 'ab', 'ab']);
     });
   });

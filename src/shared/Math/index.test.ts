@@ -1,6 +1,6 @@
 import { sum, multiply, isEven, isOdd, factorial } from '.';
 
-describe('shared', () => {
+describe('shared.Math', () => {
   describe('isEven', () => {
     it('returns true when the number is even', () => {
       expect(isEven(0)).toEqual(true);

@@ -1,4 +1,12 @@
-import { multiply, parseArraysOfNumbers, sum } from '../../shared';
+import {
+  multiply,
+  parseArraysOfNumbers,
+  sum,
+  pipe,
+  map,
+  filter,
+  flatMap,
+} from '../../shared';
 
 const getAdjacent = (grid: number[][], x: number, y: number) => {
   const g = (x: number, y: number) =>
@@ -12,12 +20,18 @@ const getAdjacent = (grid: number[][], x: number, y: number) => {
   ];
 };
 
-export const part1 = (input: string) => {
-  const lowPoints = parseArraysOfNumbers(input).map((y, yI, yA) =>
-    y.filter((x, xI) => getAdjacent(yA, xI, yI).every((v) => x < v[2]))
-  );
-  return sum(lowPoints.flat().map((z) => z + 1));
-};
+const getRiskLevels = flatMap((y: number[], yI: number, yA: number[][]) => {
+  const isLowpoint = (x: number, xI: number) =>
+    getAdjacent(yA, xI, yI).every((v) => x < v[2]);
+
+  return pipe(y)
+    ._(filter(isLowpoint))
+    ._(map((x) => x + 1))
+    .$();
+});
+
+export const part1 = (input: string) =>
+  pipe(input)._(parseArraysOfNumbers)._(getRiskLevels)._(sum).$();
 
 export const part2 = (input: string) => {
   const heightMap = parseArraysOfNumbers(input);

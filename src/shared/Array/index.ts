@@ -1,3 +1,5 @@
+import { pipe } from '../Function';
+
 export const first = <T>(array: T[]): T => array[0];
 
 export const last = <T>(array: T[]): T => array[array.length - 1];
@@ -17,19 +19,20 @@ export const range = (start: number, end: number): number[] => {
 export const map =
   <T, O>(fn: (item: T, index: number, array: T[]) => O, thisArg?: unknown) =>
   (input: T[]) =>
-    thisArg === undefined ? input.map(fn) : input.map(fn, thisArg);
+    input.map(fn, thisArg);
 
 export const filter =
   <T>(fn: (item: T, index: number, array: T[]) => boolean, thisArg?: unknown) =>
   (input: T[]) =>
-    thisArg === undefined ? input.filter(fn) : input.filter(fn, thisArg);
+    input.filter(fn, thisArg);
 
 export const reduce =
   <T>(fn: (previous: T, current: T, index: number, array: T[]) => T) =>
   (input: T[]): T =>
     input.reduce(fn);
 
-export const reduceWithInitialValue =
+// reduce with Initial value
+export const reduceI =
   <T, O>(
     fn: (previous: O, current: T, index: number, array: T[]) => O,
     initialValue: O
@@ -40,9 +43,35 @@ export const reduceWithInitialValue =
 export const any =
   <T>(fn: (item: T, index: number, array: T[]) => boolean, thisArg?: unknown) =>
   (input: T[]) =>
-    thisArg === undefined ? input.some(fn) : input.some(fn, thisArg);
+    input.some(fn, thisArg);
 
 export const all =
   <T>(fn: (item: T, index: number, array: T[]) => boolean, thisArg?: unknown) =>
   (input: T[]) =>
-    thisArg === undefined ? input.every(fn) : input.every(fn, thisArg);
+    input.every(fn, thisArg);
+
+export const flat =
+  <A, D extends number = 1>(depth?: D) =>
+  (input: A[]) =>
+    input.flat(depth);
+
+export const flatMap =
+  <T, O>(fn: (item: T, index: number, array: T[]) => O, thisArg?: unknown) =>
+  (input: T[]) =>
+    pipe(input)._(map(fn, thisArg))._(flat()).$();
+
+export const join =
+  <T>(separator?: string) =>
+  (input: T[]): string =>
+    input.join(separator);
+
+export const fromIterable = <T>(iterable: {
+  [Symbol.iterator](): IterableIterator<T>;
+}) => [...iterable];
+
+export const sort =
+  <T>(fn?: (a: T, b: T) => number) =>
+  (input: T[]): T[] =>
+    input.sort(fn);
+
+export const reverse = <T>(input: T[]): T[] => input.reverse();

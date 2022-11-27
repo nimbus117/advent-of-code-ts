@@ -1,26 +1,21 @@
 import { first, map } from '../Array';
-import { splitAt, trim } from '../String';
+import { split, trim } from '../String';
 import { pipe } from '../Function';
 
 export const parseLinesOfStrings = (input: string): string[] =>
-  pipe(input).$(trim).$(splitAt('\n')).value();
+  pipe(input)._(trim)._(split('\n')).$();
 
 export const parseLinesOfNumbers = (input: string): number[] =>
-  pipe(input).$(parseLinesOfStrings).$(map(Number)).value();
-
-export const parseArraysOfNumbers = (input: string): number[][] =>
-  pipe(input)
-    .$(parseLinesOfStrings)
-    .$(map((x) => x.split('').map(Number)))
-    .value();
-
-export const parseCommaSeparatedLineOfNumbers = (input: string): number[] =>
-  pipe(input)
-    .$(parseLinesOfStrings)
-    .$(first)
-    .$(splitAt(','))
-    .$(map(Number))
-    .value();
+  pipe(input)._(parseLinesOfStrings)._(map(Number)).$();
 
 export const parseLineOfCharacters = (input: string): string[] =>
-  pipe(input).$(parseLinesOfStrings).$(first).$(splitAt('')).value();
+  pipe(input)._(parseLinesOfStrings)._(first)._(split('')).$();
+
+export const parseLineOfNumbers = (input: string): number[] =>
+  pipe(input)._(parseLineOfCharacters)._(map(Number)).$();
+
+export const parseArraysOfNumbers = (input: string): number[][] =>
+  pipe(input)._(parseLinesOfStrings)._(map(parseLineOfNumbers)).$();
+
+export const parseCommaSeparatedLineOfNumbers = (input: string): number[] =>
+  pipe(input)._(parseLinesOfStrings)._(first)._(split(','))._(map(Number)).$();

@@ -5,11 +5,17 @@ export {
   any,
   filter,
   first,
+  flat,
+  flatMap,
+  fromIterable,
+  join,
   last,
   map,
   range,
   reduce,
-  reduceWithInitialValue,
+  reduceI,
+  reverse,
+  sort,
   transpose,
 } from './Array';
 
@@ -25,6 +31,7 @@ export {
   parseArraysOfNumbers,
   parseCommaSeparatedLineOfNumbers,
   parseLineOfCharacters,
+  parseLineOfNumbers,
   parseLinesOfNumbers,
   parseLinesOfStrings,
 } from './ParseInput';
@@ -33,9 +40,11 @@ export {
   isCapitalized,
   isLowerCase,
   isUpperCase,
-  lengthAtLeast,
-  splitAt,
+  isLengthAtLeast,
+  split,
   trim,
   trimEnd,
   trimStart,
 } from './String';
+
+export const length = <T extends { length: number }>(x: T): number => x.length;

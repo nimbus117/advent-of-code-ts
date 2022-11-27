@@ -1,4 +1,14 @@
-import { MapWithDefault, last, parseLinesOfStrings } from '../../shared';
+import {
+  filter,
+  last,
+  map,
+  MapWithDefault,
+  parseLinesOfStrings,
+  pipe,
+  reduceI,
+  reverse,
+  sort,
+} from '../../shared';
 
 const pairs = new Map([
   [')', '('],
@@ -21,44 +31,43 @@ const p2Score = new MapWithDefault(0, [
   ['<', 4],
 ]);
 
+const getTotalSyntaxErrorScore = reduceI<string, number>((acc, cur) => {
+  const openingChars = [];
+  for (const char of cur) {
+    const opening = pairs.get(char);
+    if (opening) {
+      if (last(openingChars) === opening) openingChars.pop();
+      else return acc + p1Score.get(char);
+    } else openingChars.push(char);
+  }
+  return acc;
+}, 0);
+
+const getCompletionScores = map((line: string) => {
+  const openingChars = [];
+  for (const char of line.split('')) {
+    const opening = pairs.get(char);
+    if (opening) {
+      if (last(openingChars) === opening) openingChars.pop();
+      else {
+        return 0;
+      }
+    } else openingChars.push(char);
+  }
+
+  const getScore = reduceI((acc, cur: string) => acc * 5 + p2Score.get(cur), 0);
+
+  return pipe(openingChars)._(reverse)._(getScore).$();
+});
+
 export const part1 = (input: string) =>
-  parseLinesOfStrings(input)
-    .reduce<string[]>((acc, cur) => {
-      const openingChars = [];
-      for (const char of cur) {
-        const opening = pairs.get(char);
-        if (opening) {
-          if (last(openingChars) === opening) openingChars.pop();
-          else {
-            acc.push(char);
-            break;
-          }
-        } else openingChars.push(char);
-      }
-      return acc;
-    }, [])
-    .map((char) => p1Score.get(char))
-    .reduce((a, b) => a + b);
+  pipe(input)._(parseLinesOfStrings)._(getTotalSyntaxErrorScore).$();
 
-export const part2 = (input: string) => {
-  const scores = parseLinesOfStrings(input)
-    .map((line) => {
-      const openingChars = [];
-      for (const char of line.split('')) {
-        const opening = pairs.get(char);
-        if (opening) {
-          if (last(openingChars) === opening) openingChars.pop();
-          else {
-            return 0;
-          }
-        } else openingChars.push(char);
-      }
-      return openingChars
-        .reverse()
-        .reduce((acc, cur) => acc * 5 + p2Score.get(cur), 0);
-    }, [])
-    .filter(Boolean)
-    .sort((a, b) => a - b);
-
-  return scores[Math.floor(scores.length / 2)];
-};
+export const part2 = (input: string) =>
+  pipe(input)
+    ._(parseLinesOfStrings)
+    ._(getCompletionScores)
+    ._(filter((x) => x > 0))
+    ._(sort((a, b) => a - b))
+    ._((scores) => scores[Math.floor(scores.length / 2)])
+    .$();

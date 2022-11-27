@@ -47,25 +47,25 @@ export const part1 = (input: string) =>
   ).flashes;
 
 export const part2 = (input: string) => {
-  const blah = { grid: parseArraysOfNumbers(input), step: 0, done: false };
+  const octopuses = { grid: parseArraysOfNumbers(input), step: 0, done: false };
 
-  while (!blah.done) {
-    blah.step += 1;
-    blah.grid = blah.grid.map((y: number[]) => y.map((x) => x + 1));
+  while (!octopuses.done) {
+    octopuses.step += 1;
+    octopuses.grid = octopuses.grid.map((y: number[]) => y.map((x) => x + 1));
     range(0, 9).forEach((y) =>
       range(0, 9).forEach((x) => {
-        flash(blah.grid, x, y);
+        flash(octopuses.grid, x, y);
       })
     );
-    blah.grid.forEach((y, yI) =>
+    octopuses.grid.forEach((y, yI) =>
       y.forEach((_, xI) => {
-        if (blah.grid[yI][xI] === -1) {
-          blah.grid[yI][xI] = 0;
+        if (octopuses.grid[yI][xI] === -1) {
+          octopuses.grid[yI][xI] = 0;
         }
       })
     );
-    if (blah.grid.flat().every((o) => o === 0)) blah.done = true;
+    if (octopuses.grid.flat().every((o) => o === 0)) octopuses.done = true;
   }
 
-  return blah.step;
+  return octopuses.step;
 };

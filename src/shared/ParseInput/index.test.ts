@@ -4,9 +4,10 @@ import {
   parseArraysOfNumbers,
   parseCommaSeparatedLineOfNumbers,
   parseLineOfCharacters,
+  parseLineOfNumbers,
 } from '.';
 
-describe('shared', () => {
+describe('shared.ParseInput', () => {
   describe('parseLinesOfStrings', () => {
     it('splits the input string at each newline character and returns an array of strings', () => {
       const input = 'blah\nblah\nblah\n';
@@ -67,6 +68,13 @@ describe('shared', () => {
         'e',
         'f',
       ]);
+    });
+  });
+
+  describe('parseLineOfNumbers', () => {
+    it('splits the input string at each character and returns an array of numbers', () => {
+      const input = '12345\n';
+      expect(parseLineOfNumbers(input)).toEqual([1, 2, 3, 4, 5]);
     });
   });
 });

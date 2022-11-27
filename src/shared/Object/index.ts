@@ -19,17 +19,17 @@ export const pick = <T extends Obj, K extends ObjKey<T>>(
   keys: K[]
 ): Pick<T, K> =>
   pipe(object)
-    .$(Object.entries)
-    .$(createEntriesFilter(keys, 'pick'))
-    .$(Object.fromEntries)
-    .value();
+    ._(Object.entries)
+    ._(createEntriesFilter(keys, 'pick'))
+    ._(Object.fromEntries)
+    .$();
 
 export const omit = <T extends Obj, K extends ObjKey<T>>(
   object: T,
   keys: K[]
 ): Omit<T, K> =>
   pipe(object)
-    .$(Object.entries)
-    .$(createEntriesFilter(keys, 'omit'))
-    .$(Object.fromEntries)
-    .value();
+    ._(Object.entries)
+    ._(createEntriesFilter(keys, 'omit'))
+    ._(Object.fromEntries)
+    .$();

@@ -1,19 +1,25 @@
 import {
-  first,
-  last,
-  range,
-  transpose,
-  map,
-  filter,
-  reduce,
-  reduceWithInitialValue,
-  any,
   all,
+  any,
+  filter,
+  first,
+  flat,
+  flatMap,
+  fromIterable,
+  join,
+  last,
+  map,
+  range,
+  reduce,
+  reduceI,
+  reverse,
+  sort,
+  transpose,
 } from '.';
 import { MapWithDefault } from '../MapWithDefault';
 import { isEven } from '../Math';
 
-describe('shared', () => {
+describe('shared.Array', () => {
   describe('transpose', () => {
     it('should flip the matrix over its diagonal', () => {
       expect(
@@ -92,10 +98,7 @@ describe('shared', () => {
 
   describe('reduceWithInitialValue', () => {
     it('should return a count of the number of "z" characters in the array', () => {
-      const countZ = reduceWithInitialValue(
-        (a, b) => (b === 'z' ? a + 1 : a),
-        0
-      );
+      const countZ = reduceI((a, b) => (b === 'z' ? a + 1 : a), 0);
       expect(countZ(['a', 'z', 'b', 'z', 'c', 'z'])).toEqual(3);
     });
   });
@@ -133,6 +136,91 @@ describe('shared', () => {
       const letters = new Set(['a', 'b', 'c']);
       const hasAllLetters = all(letters.has, letters);
       expect(hasAllLetters(['a', 'b', 'c'])).toEqual(true);
+    });
+  });
+
+  describe('flat', () => {
+    it('should flatten the array', () => {
+      expect(flat()([[1], [2], [3], [4], [5]])).toEqual([1, 2, 3, 4, 5]);
+    });
+
+    it('should flatten the array up to the specified depth', () => {
+      expect(flat(2)([[[1]], [[2]], [[3]], [[4]], [[5]]])).toEqual([
+        1, 2, 3, 4, 5,
+      ]);
+    });
+  });
+
+  describe('flatMap', () => {
+    it('should double the number in each sub array and then flatten the array', () => {
+      const double = flatMap((x: number[]) => [x[0] * 2]);
+      expect(double([[1], [2], [3], [4]])).toEqual([2, 4, 6, 8]);
+    });
+
+    it('should replace values in the array by doing a lookup against the Map and then flatten the array', () => {
+      const replaceMap = new MapWithDefault('z', [
+        ['a', 'x'],
+        ['b', 'y'],
+      ]);
+      const replace = flatMap(
+        (x: string[]) => [replaceMap.get(x[0])],
+        replaceMap
+      );
+      expect(replace([['a'], ['b'], ['c']])).toEqual(['x', 'y', 'z']);
+    });
+  });
+
+  describe('join', () => {
+    it('adds all of the elements in the array into a string sperated by commas', () => {
+      expect(join()([1, 2, 3, 4, 5])).toEqual('1,2,3,4,5');
+    });
+
+    it('adds all of the elements in the array into a string', () => {
+      expect(join('')([1, 2, 3, 4, 5])).toEqual('12345');
+    });
+
+    it('adds all of the elements in the array into a string sperated by "->"', () => {
+      expect(join('->')([1, 2, 3, 4, 5])).toEqual('1->2->3->4->5');
+    });
+  });
+
+  describe('fromIterable', () => {
+    it('takes a Map and returns an array of key value pairs', () => {
+      const map = new Map([
+        [1, 'a'],
+        [2, 'b'],
+      ]);
+      expect(fromIterable(map)).toEqual([
+        [1, 'a'],
+        [2, 'b'],
+      ]);
+    });
+
+    it('takes a Set and returns an array of values', () => {
+      const set = new Set([1, 2, 3, 4]);
+      expect(fromIterable(set)).toEqual([1, 2, 3, 4]);
+    });
+
+    it('takes a string and returns an array of characters', () => {
+      expect(fromIterable('abcd')).toEqual(['a', 'b', 'c', 'd']);
+    });
+  });
+
+  describe('sort', () => {
+    it('sorts the array using the default method', () => {
+      expect(sort()([5, 4, 3, 2, 1])).toEqual([1, 2, 3, 4, 5]);
+    });
+
+    it('sorts the array using the given sort function', () => {
+      expect(
+        sort((a: number, b: number) => (a < b ? 1 : -1))([1, 2, 3, 4, 5])
+      ).toEqual([5, 4, 3, 2, 1]);
+    });
+  });
+
+  describe('reverse', () => {
+    it('reverses the array', () => {
+      expect(reverse([5, 4, 3, 2, 1])).toEqual([1, 2, 3, 4, 5]);
     });
   });
 });

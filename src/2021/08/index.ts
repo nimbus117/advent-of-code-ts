@@ -1,4 +1,11 @@
-import { parseLinesOfStrings, sum } from '../../shared';
+import {
+  filter,
+  map,
+  parseLinesOfStrings,
+  pipe,
+  sort,
+  sum,
+} from '../../shared';
 
 const parse = (input: string) =>
   parseLinesOfStrings(input).map((line) => {
@@ -8,45 +15,60 @@ const parse = (input: string) =>
     return { patterns, output };
   });
 
-const uniqueNumbers = (a: string[]) =>
-  a.filter((x) => [2, 3, 4, 7].includes(x.length));
+const filterUnique = filter((x: string) => [2, 3, 4, 7].includes(x.length));
 
 const hasSegments = (a: string, b: string) =>
   a.split('').every((x) => b.includes(x));
 
-const sortByLength = (a: string, b: string) => a.length - b.length;
+const sortByLength = sort((a: string, b: string) => a.length - b.length);
+
+const mapOutput = map(
+  ({ patterns, output }: { patterns: string[]; output: string[] }) => {
+    const known = pipe(patterns)._(filterUnique)._(sortByLength).$();
+    const [one, seven, four, eight] = known;
+
+    const filterKnown = filter((x: string) => !known.includes(x));
+
+    const filterIncludes = (a: string) =>
+      patterns.filter((x) => hasSegments(a, x));
+
+    const [nine] = pipe(four)._(filterIncludes)._(filterKnown).$();
+    known.push(nine);
+
+    const [three, zero] = pipe(one)
+      ._(filterIncludes)
+      ._(filterKnown)
+      ._(sortByLength)
+      .$();
+    known.push(three, zero);
+
+    const [six] = pipe(patterns)
+      ._(filter((x) => x.length === 6))
+      ._(filterKnown)
+      .$();
+    known.push(six);
+
+    const [five] = pipe(patterns)
+      ._(filter((x) => hasSegments(x, six)))
+      ._(filterKnown)
+      .$();
+    known.push(five);
+
+    const [two] = filterKnown(patterns);
+
+    const l = [zero, one, two, three, four, five, six, seven, eight, nine];
+    const lookup = new Map(l.map((x, i) => [x, i]));
+
+    return parseInt(output.map((x) => lookup.get(x)).join(''));
+  }
+);
 
 export const part1 = (input: string) =>
-  sum(parse(input).map((line) => uniqueNumbers(line.output).length));
+  pipe(input)
+    ._(parse)
+    ._(map((line) => filterUnique(line.output).length))
+    ._(sum)
+    .$();
 
 export const part2 = (input: string) =>
-  sum(
-    parse(input).map(({ patterns, output }) => {
-      const known = uniqueNumbers(patterns).sort(sortByLength);
-      const [one, seven, four, eight] = known;
-
-      const filterKnown = (a: string[]) => a.filter((x) => !known.includes(x));
-
-      const filterIncludes = (a: string) =>
-        patterns.filter((x) => hasSegments(a, x));
-
-      const [nine] = filterKnown(filterIncludes(four));
-      known.push(nine);
-
-      const [three, zero] = filterKnown(filterIncludes(one)).sort(sortByLength);
-      known.push(three, zero);
-
-      const [six] = filterKnown(patterns.filter((x) => x.length === 6));
-      known.push(six);
-
-      const [five] = filterKnown(patterns.filter((x) => hasSegments(x, six)));
-      known.push(five);
-
-      const [two] = filterKnown(patterns);
-
-      const l = [zero, one, two, three, four, five, six, seven, eight, nine];
-      const lookup = new Map(l.map((x, i) => [x, i]));
-
-      return parseInt(output.map((x) => lookup.get(x)).join(''));
-    })
-  );
+  pipe(input)._(parse)._(mapOutput)._(sum).$();
