@@ -15,6 +15,7 @@ export {
   reduce,
   reduceI,
   reverse,
+  slice,
   sort,
   transpose,
 } from './Array';

@@ -72,6 +72,11 @@ export const fromIterable = <T>(iterable: {
 export const sort =
   <T>(fn?: (a: T, b: T) => number) =>
   (input: T[]): T[] =>
-    input.sort(fn);
+    input.slice().sort(fn);
 
 export const reverse = <T>(input: T[]): T[] => input.reverse();
+
+export const slice =
+  <T>(start?: number, end?: number) =>
+  (input: T[]) =>
+    input.slice(start, end);

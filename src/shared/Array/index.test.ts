@@ -13,6 +13,7 @@ import {
   reduce,
   reduceI,
   reverse,
+  slice,
   sort,
   transpose,
 } from '.';
@@ -221,6 +222,20 @@ describe('shared.Array', () => {
   describe('reverse', () => {
     it('reverses the array', () => {
       expect(reverse([5, 4, 3, 2, 1])).toEqual([1, 2, 3, 4, 5]);
+    });
+  });
+
+  describe('slice', () => {
+    it('returns a copy of the array', () => {
+      expect(slice()([1, 2, 3, 4, 5])).toEqual([1, 2, 3, 4, 5]);
+    });
+
+    it('returns a copy of the section of the array from index 2', () => {
+      expect(slice(2)([1, 2, 3, 4, 5])).toEqual([3, 4, 5]);
+    });
+
+    it('returns a copy of the section of the array from index 2 to index 4 (exclusive)', () => {
+      expect(slice(2, 4)([1, 2, 3, 4, 5])).toEqual([3, 4]);
     });
   });
 });
