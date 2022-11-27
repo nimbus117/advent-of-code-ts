@@ -1,14 +1,13 @@
 import {
-  parseLinesOfStrings,
-  range,
-  pipe,
   filter,
-  map,
-  reduceI,
+  flatMap,
+  fromIterable,
   length,
   MapWithDefault,
-  flat,
-  fromIterable,
+  parseLinesOfStrings,
+  pipe,
+  range,
+  reduceI,
 } from '../../shared';
 
 type Line = [[number, number], [number, number]];
@@ -21,7 +20,7 @@ const parseLines = (input: string) =>
 const isHorizontalOrVertical = ([[x1, y1], [x2, y2]]: Line) =>
   x1 === x2 || y1 === y2;
 
-const mapLinePoints = map(([[x1, y1], [x2, y2]]: Line) => {
+const mapLinePoints = flatMap(([[x1, y1], [x2, y2]]: Line) => {
   const isHorizontal = x1 === x2;
   const slope = isHorizontal ? 0 : (y2 - y1) / (x2 - x1);
   const [a, b, c, d] = isHorizontal ? [y1, y2, x1, x2] : [x1, x2, y1, y2];
@@ -43,7 +42,6 @@ const countIntersections = (lines: Line[]) => {
 
   return pipe(lines)
     ._(mapLinePoints)
-    ._(flat())
     ._(count(new MapWithDefault(0)))
     ._(fromIterable)
     ._(filter(([, v]) => v > 1))
