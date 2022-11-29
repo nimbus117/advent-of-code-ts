@@ -24,9 +24,9 @@ export { allPass, anyPass, pipe } from './Function';
 
 export { MapWithDefault } from './MapWithDefault';
 
-export { factorial, isEven, isOdd, multiply, sum } from './Math';
+export { count, factorial, isEven, isOdd, multiply, sum } from './Math';
 
-export { omit, pick } from './Object';
+export { get, omit, pick } from './Object';
 
 export {
   parseArraysOfNumbers,
@@ -47,5 +47,3 @@ export {
   trimEnd,
   trimStart,
 } from './String';
-
-export const length = <T extends { length: number }>(x: T): number => x.length;

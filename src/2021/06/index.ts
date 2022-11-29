@@ -1,5 +1,5 @@
 import {
-  length,
+  count,
   parseCommaSeparatedLineOfNumbers,
   pipe,
   range,
@@ -28,7 +28,7 @@ export const part1 = (input: string) =>
   pipe(input)
     ._(parseCommaSeparatedLineOfNumbers)
     ._(simulateGrowth(80))
-    ._(length)
+    ._(count)
     .$();
 
 export const part2 = (input: string) =>

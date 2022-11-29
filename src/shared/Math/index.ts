@@ -18,3 +18,8 @@ export const isOdd = (number: number): boolean => !isEven(number);
 export const sum = reduce<number>((a, b) => a + b);
 
 export const multiply = reduce<number>((a, b) => a * b);
+
+export const count = <T extends { length: number } | { size: number }>(
+  input: T
+): number =>
+  typeof input === 'string' || 'length' in input ? input.length : input.size;

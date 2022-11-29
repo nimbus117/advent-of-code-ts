@@ -2,7 +2,7 @@ import {
   filter,
   flatMap,
   fromIterable,
-  length,
+  count,
   MapWithDefault,
   parseLinesOfStrings,
   pipe,
@@ -33,7 +33,9 @@ const mapLinePoints = flatMap(([[x1, y1], [x2, y2]]: Line) => {
 });
 
 const countIntersections = (lines: Line[]) => {
-  const count = (intersections: MapWithDefault<string, number>) =>
+  const getIntersectionCounts = (
+    intersections: MapWithDefault<string, number>
+  ) =>
     reduceI((acc, cur) => {
       const key = `${cur}`;
       acc.set(key, acc.get(key) + 1);
@@ -42,10 +44,10 @@ const countIntersections = (lines: Line[]) => {
 
   return pipe(lines)
     ._(mapLinePoints)
-    ._(count(new MapWithDefault(0)))
+    ._(getIntersectionCounts(new MapWithDefault(0)))
     ._(fromIterable)
     ._(filter(([, v]) => v > 1))
-    ._(length)
+    ._(count)
     .$();
 };
 

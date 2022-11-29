@@ -1,4 +1,4 @@
-import { sum, multiply, isEven, isOdd, factorial } from '.';
+import { count, sum, multiply, isEven, isOdd, factorial } from '.';
 
 describe('shared.Math', () => {
   describe('isEven', () => {
@@ -62,6 +62,31 @@ describe('shared.Math', () => {
 
     it('should return 1 for factorial 0', () => {
       expect(factorial(0n)).toEqual(1n);
+    });
+  });
+
+  describe('count', () => {
+    it('should return the length of the array', () => {
+      expect(count([1, 2, 3, 4, 5])).toEqual(5);
+    });
+
+    it('should return the length of the string', () => {
+      expect(count('abcde')).toEqual(5);
+    });
+
+    it('should return the size of the Set', () => {
+      expect(count(new Set([1, 2, 3, 4, 5]))).toEqual(5);
+    });
+
+    it('should return the size of the Map', () => {
+      const map = new Map([
+        [1, 1],
+        [2, 2],
+        [3, 3],
+        [4, 4],
+        [5, 5],
+      ]);
+      expect(count(map)).toEqual(5);
     });
   });
 });
