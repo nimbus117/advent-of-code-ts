@@ -1,6 +1,7 @@
 import { part1 } from './';
 
-const input = `start-A
+const input = `
+start-A
 start-b
 A-c
 A-b

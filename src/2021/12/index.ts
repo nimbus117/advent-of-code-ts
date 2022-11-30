@@ -1,4 +1,4 @@
-import { parseLinesOfStrings } from '../../shared';
+import { parseLinesOfStrings } from '@shared/ParseInput';
 import { Cave, CaveMap, CaveName, Connection, VisitedCaves } from './types';
 
 const isCave = (cave: Cave | undefined): cave is Cave => cave !== undefined;
@@ -26,8 +26,11 @@ const addToMap = (connection: Connection, caveMap: CaveMap) => {
 
 const mapCaves = (input: string) =>
   parseLinesOfStrings(input)
-    .map((line) => line.split('-'))
-    .filter((connection): connection is Connection => connection.length === 2)
+    .map((line) => {
+      const l = line.split('-');
+      const c: Connection = [l[0], l[1]];
+      return c;
+    })
     .reduce<CaveMap>(
       (caveMap, connection) => addToMap(connection, caveMap),
       new Map()

@@ -5,7 +5,7 @@ describe('2015 day01', () => {
     expect(part1('))(((((')).toBe(3);
   });
 
-  test('part1', () => {
+  test('part2', () => {
     expect(part2('()())')).toBe(5);
   });
 });

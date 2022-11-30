@@ -1,6 +1,7 @@
 import { part1, part2 } from './';
 
-const input = `2199943210
+const input = `
+2199943210
 3987894921
 9856789892
 8767896789

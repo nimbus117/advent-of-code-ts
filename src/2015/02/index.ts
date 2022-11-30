@@ -1,5 +1,8 @@
-import { multiply, parseLinesOfStrings, pipe, split, sum } from '../../shared';
-import { map, reduceI, slice, sort } from '../../shared/Array';
+import { map, reduceI, slice, sort } from '@shared/Array';
+import { pipe } from '@shared/Function';
+import { multiply, sum } from '@shared/Math';
+import { parseLinesOfStrings } from '@shared/ParseInput';
+import { split } from '@shared/String';
 
 const getDimensions = (present: string) =>
   pipe(present)._(split('x'))._(map(Number)).$();

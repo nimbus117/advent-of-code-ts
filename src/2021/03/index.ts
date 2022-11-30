@@ -1,4 +1,6 @@
-import { map, reduceI, parseArraysOfNumbers, pipe } from '../../shared';
+import { map, reduceI } from '@shared/Array';
+import { pipe } from '@shared/Function';
+import { parseArraysOfNumbers } from '@shared/ParseInput';
 
 const getGammaBits = (input: number[][]) => {
   const countSetBits = reduceI(

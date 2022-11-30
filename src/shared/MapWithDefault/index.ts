@@ -1,4 +1,4 @@
-export class MapWithDefault<K, V> extends Map<K, V> {
+export default class MapWithDefault<K, V> extends Map<K, V> {
   defaultValue;
 
   constructor(defaultValue: V, entries?: Iterable<readonly [K, V]>) {

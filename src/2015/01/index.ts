@@ -1,12 +1,15 @@
-import { parseLineOfCharacters, pipe, map, sum } from '../../shared';
+import { map } from '@shared/Array';
+import { pipe } from '@shared/Function';
+import { sum } from '@shared/Math';
+import { parseLineOfCharacters } from '@shared/ParseInput';
 
 const instructionToInt = (x: string) => (x === '(' ? 1 : -1);
 
 const getBasementPosition = (instructions: string[]) => {
   let currentFloor = 0;
-  for (let i = 0; i < instructions.length; i++) {
-    currentFloor += instructionToInt(instructions[i]);
-    if (currentFloor === -1) return i + 1;
+  for (const [index, instruction] of instructions.entries()) {
+    currentFloor += instructionToInt(instruction);
+    if (currentFloor === -1) return index + 1;
   }
 };
 

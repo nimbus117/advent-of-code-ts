@@ -1,16 +1,11 @@
-import {
-  filter,
-  flatMap,
-  fromIterable,
-  count,
-  MapWithDefault,
-  parseLinesOfStrings,
-  pipe,
-  range,
-  reduceI,
-} from '../../shared';
+import { filter, flatMap, fromIterable, range, reduceI } from '@shared/Array';
+import { pipe } from '@shared/Function';
+import MapWithDefault from '@shared/MapWithDefault';
+import { count } from '@shared/Math';
+import { parseLinesOfStrings } from '@shared/ParseInput';
+import { TupleMut } from '@shared/Types';
 
-type Line = [[number, number], [number, number]];
+type Line = TupleMut<TupleMut<number, 2>, 2>;
 
 const parseLines = (input: string) =>
   parseLinesOfStrings(input).map((line) =>

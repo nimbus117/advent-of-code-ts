@@ -1,11 +1,7 @@
-import {
-  filter,
-  map,
-  parseLinesOfStrings,
-  pipe,
-  sort,
-  sum,
-} from '../../shared';
+import { filter, map, sort } from '@shared/Array';
+import { pipe } from '@shared/Function';
+import { sum } from '@shared/Math';
+import { parseLinesOfStrings } from '@shared/ParseInput';
 
 const parse = (input: string) =>
   parseLinesOfStrings(input).map((line) => {

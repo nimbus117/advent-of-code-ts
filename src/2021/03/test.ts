@@ -1,6 +1,7 @@
 import { part1, part2 } from './';
 
-const input = `00100
+const input = `
+00100
 11110
 10110
 10111

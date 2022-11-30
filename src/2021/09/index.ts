@@ -1,12 +1,7 @@
-import {
-  multiply,
-  parseArraysOfNumbers,
-  sum,
-  pipe,
-  map,
-  filter,
-  flatMap,
-} from '../../shared';
+import { filter, flatMap, map } from '@shared/Array';
+import { pipe } from '@shared/Function';
+import { multiply, sum } from '@shared/Math';
+import { parseArraysOfNumbers } from '@shared/ParseInput';
 
 const getAdjacent = (grid: number[][], x: number, y: number) => {
   const g = (x: number, y: number) =>

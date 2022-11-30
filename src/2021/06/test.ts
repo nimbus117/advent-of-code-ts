@@ -1,7 +1,6 @@
 import { part1, part2 } from './';
 
-const input = `3,4,3,1,2
-`;
+const input = `3,4,3,1,2`;
 
 describe('2021 day06', () => {
   test('part1', () => {

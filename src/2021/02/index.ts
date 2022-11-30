@@ -1,4 +1,6 @@
-import { parseLinesOfStrings, map, pipe, reduceI } from '../../shared';
+import { map, reduceI } from '@shared/Array';
+import { pipe } from '@shared/Function';
+import { parseLinesOfStrings } from '@shared/ParseInput';
 
 type Command = [string, number];
 type Position = { x: number; y: number };

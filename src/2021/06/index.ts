@@ -1,11 +1,7 @@
-import {
-  count,
-  parseCommaSeparatedLineOfNumbers,
-  pipe,
-  range,
-  sum,
-  flatMap,
-} from '../../shared';
+import { flatMap, range } from '@shared/Array';
+import { pipe } from '@shared/Function';
+import { count, sum } from '@shared/Math';
+import { parseCommaSeparatedLineOfNumbers } from '@shared/ParseInput';
 
 const simulateGrowth =
   (days: number) =>

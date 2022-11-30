@@ -1,4 +1,5 @@
 import { count, sum, multiply, isEven, isOdd, factorial } from '.';
+import MapWithDefault from '../MapWithDefault';
 
 describe('shared.Math', () => {
   describe('isEven', () => {
@@ -80,6 +81,17 @@ describe('shared.Math', () => {
 
     it('should return the size of the Map', () => {
       const map = new Map([
+        [1, 1],
+        [2, 2],
+        [3, 3],
+        [4, 4],
+        [5, 5],
+      ]);
+      expect(count(map)).toEqual(5);
+    });
+
+    it('should return the size of the MapWithDefault', () => {
+      const map = new MapWithDefault(0, [
         [1, 1],
         [2, 2],
         [3, 3],

@@ -19,7 +19,6 @@ export const sum = reduce<number>((a, b) => a + b);
 
 export const multiply = reduce<number>((a, b) => a * b);
 
-export const count = <T extends { length: number } | { size: number }>(
-  input: T
-): number =>
+type Countable = string | Array<unknown> | Map<unknown, unknown> | Set<unknown>;
+export const count = <T extends Countable>(input: T): number =>
   typeof input === 'string' || 'length' in input ? input.length : input.size;

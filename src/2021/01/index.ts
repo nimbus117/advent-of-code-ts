@@ -1,11 +1,7 @@
-import {
-  filter,
-  count,
-  parseLinesOfNumbers,
-  pipe,
-  sum,
-  map,
-} from '../../shared';
+import { filter, map } from '@shared/Array';
+import { pipe } from '@shared/Function';
+import { count, sum } from '@shared/Math';
+import { parseLinesOfNumbers } from '@shared/ParseInput';
 
 const hasIncreased = (depth: number, i: number, arr: number[]) =>
   depth > arr[i - 1];

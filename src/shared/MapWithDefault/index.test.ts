@@ -1,4 +1,4 @@
-import { MapWithDefault } from '.';
+import MapWithDefault from '.';
 
 describe('shared', () => {
   describe('MapWithDefault', () => {

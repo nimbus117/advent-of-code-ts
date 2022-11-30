@@ -1,4 +1,5 @@
-import { sum, transpose, last } from '../../shared';
+import { last, transpose } from '@shared/Array';
+import { sum } from '@shared/Math';
 
 type Board = number[][];
 type Results = { left: Board[]; won: Board[] };

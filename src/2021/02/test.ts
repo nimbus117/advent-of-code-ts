@@ -1,6 +1,7 @@
 import { part1, part2 } from './';
 
-const input = `forward 5
+const input = `
+forward 5
 down 5
 forward 8
 up 3

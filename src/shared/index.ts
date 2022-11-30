@@ -1,49 +1,21 @@
 /* istanbul ignore file */
 
-export {
-  all,
-  any,
-  filter,
-  first,
-  flat,
-  flatMap,
-  fromIterable,
-  join,
-  last,
-  map,
-  range,
-  reduce,
-  reduceI,
-  reverse,
-  slice,
-  sort,
-  transpose,
-} from './Array';
+import MapWithDefault from './MapWithDefault';
 
-export { allPass, anyPass, pipe } from './Function';
+export * as A from './Array';
 
-export { MapWithDefault } from './MapWithDefault';
+export * as F from './Function';
 
-export { count, factorial, isEven, isOdd, multiply, sum } from './Math';
+export * as M from './Math';
 
-export { get, omit, pick } from './Object';
+export * as O from './Object';
 
-export {
-  parseArraysOfNumbers,
-  parseCommaSeparatedLineOfNumbers,
-  parseLineOfCharacters,
-  parseLineOfNumbers,
-  parseLinesOfNumbers,
-  parseLinesOfStrings,
-} from './ParseInput';
+export * as P from './ParseInput';
 
-export {
-  isCapitalized,
-  isLowerCase,
-  isUpperCase,
-  isLengthAtLeast,
-  split,
-  trim,
-  trimEnd,
-  trimStart,
-} from './String';
+export * as S from './String';
+
+export * as T from './Types';
+
+export const Class = {
+  MapWithDefault,
+};

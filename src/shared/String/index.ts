@@ -12,9 +12,7 @@ export const isLengthAtLeast = (length: number) => (string: string) =>
 
 export const split =
   (splitter: string | RegExp, limit?: number) => (string: string) =>
-    typeof limit === 'number'
-      ? string.split(splitter, limit)
-      : string.split(splitter);
+    string.split(splitter, limit);
 
 export const trimEnd = (string: string) => string.trimEnd();
 

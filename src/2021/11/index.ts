@@ -1,4 +1,5 @@
-import { parseArraysOfNumbers, range } from '../../shared';
+import { range } from '@shared/Array';
+import { parseArraysOfNumbers } from '@shared/ParseInput';
 
 const getAdjacent = (grid: number[][], x: number, y: number) => {
   return [
