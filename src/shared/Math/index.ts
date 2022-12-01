@@ -22,3 +22,7 @@ export const multiply = reduce<number>((a, b) => a * b);
 type Countable = string | Array<unknown> | Map<unknown, unknown> | Set<unknown>;
 export const count = <T extends Countable>(input: T): number =>
   typeof input === 'string' || 'length' in input ? input.length : input.size;
+
+export const max = (numbers: number[]) => Math.max(...numbers);
+
+export const min = (numbers: number[]) => Math.min(...numbers);

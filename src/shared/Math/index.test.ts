@@ -1,4 +1,4 @@
-import { count, sum, multiply, isEven, isOdd, factorial } from '.';
+import { count, sum, multiply, isEven, isOdd, factorial, max, min } from '.';
 import MapWithDefault from '../MapWithDefault';
 
 describe('shared.Math', () => {
@@ -99,6 +99,18 @@ describe('shared.Math', () => {
         [5, 5],
       ]);
       expect(count(map)).toEqual(5);
+    });
+  });
+
+  describe('max', () => {
+    it('should return the largest number in the array', () => {
+      expect(max([1, 2, 5, 4, 3])).toEqual(5);
+    });
+  });
+
+  describe('min', () => {
+    it('should return the smallest number in the array', () => {
+      expect(min([1, 2, 5, 4, 3])).toEqual(1);
     });
   });
 });
