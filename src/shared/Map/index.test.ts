@@ -1,4 +1,4 @@
-import MapWithDefault from '.';
+import { MapWithDefault, MapWithError } from '.';
 
 describe('shared', () => {
   describe('MapWithDefault', () => {
@@ -27,6 +27,21 @@ describe('shared', () => {
     it('creates an empty map with the default set', () => {
       const emptyMap = new MapWithDefault('default value');
       expect(emptyMap.get('test')).toBe('default value');
+    });
+  });
+
+  describe('MapWithError', () => {
+    const testMap = new MapWithError([
+      ['key1', 1],
+      ['key2', 2],
+    ]);
+
+    it('returns the value if the key DOES exist', () => {
+      expect(testMap.get('key1')).toBe(1);
+    });
+
+    it('throws an error if the key DOES NOT exist', () => {
+      expect(() => testMap.get('blah')).toThrow('Could not find key: blah');
     });
   });
 });

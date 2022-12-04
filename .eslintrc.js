@@ -23,5 +23,21 @@ module.exports = {
         'jest/consistent-test-it': ['error', { fn: 'it' }],
       },
     },
+    {
+      files: ['src/shared/**'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: [
+              {
+                group: ['@shared/*'],
+                message: 'Use relative paths in shared module',
+              },
+            ],
+          },
+        ],
+      },
+    },
   ],
 };

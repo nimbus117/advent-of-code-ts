@@ -1,5 +1,5 @@
 import { count, sum, multiply, isEven, isOdd, factorial, max, min } from '.';
-import MapWithDefault from '../MapWithDefault';
+import { MapWithDefault } from '../Map';
 
 describe('shared.Math', () => {
   describe('isEven', () => {

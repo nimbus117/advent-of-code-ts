@@ -1,6 +1,6 @@
 import { filter, last, map, reduceI, reverse, sort } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import MapWithDefault from '@shared/MapWithDefault';
+import { MapWithDefault } from '@shared/Map';
 import { parseLinesOfStrings } from '@shared/ParseInput';
 
 const pairs = new Map([

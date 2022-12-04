@@ -17,7 +17,7 @@ import {
   sort,
   transpose,
 } from '.';
-import MapWithDefault from '../MapWithDefault';
+import { MapWithDefault } from '../Map';
 import { isEven } from '../Math';
 
 describe('shared.Array', () => {
