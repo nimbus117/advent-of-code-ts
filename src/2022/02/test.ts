@@ -6,7 +6,7 @@ B X
 C Z
 `;
 
-describe('2021 day02', () => {
+describe('2022 day02', () => {
   test('part1', () => {
     expect(part1(input)).toBe(15);
   });

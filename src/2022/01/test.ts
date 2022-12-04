@@ -17,7 +17,7 @@ const input = `
 10000
 `;
 
-describe('2021 day01', () => {
+describe('2022 day01', () => {
   test('part1', () => {
     expect(part1(input)).toBe(24000);
   });

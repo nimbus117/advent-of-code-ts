@@ -9,7 +9,7 @@ ttgJtRGJQctTZtZT
 CrZsJsPPZsGzwwsLwLmpwMDw
 `;
 
-describe('2021 day03', () => {
+describe('2022 day03', () => {
   test('part1', () => {
     expect(part1(input)).toBe(157);
   });

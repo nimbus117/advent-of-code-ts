@@ -13,6 +13,7 @@ const shapeScore = (char: string) => (char === 'R' ? 1 : char === 'P' ? 2 : 3);
 
 const win = (char: string) => (char === 'R' ? 'S' : char === 'P' ? 'R' : 'P');
 
+/* istanbul ignore next */
 const lose = (char: string) => (char === 'R' ? 'P' : char === 'P' ? 'S' : 'R');
 
 const getGameScore = ({ p1, p2 }: { p1: string; p2: string }) =>
