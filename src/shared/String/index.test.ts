@@ -1,9 +1,13 @@
 import {
+  indexOf,
   isCapitalized,
+  isLengthAtLeast,
   isLowerCase,
   isUpperCase,
-  isLengthAtLeast,
+  slice,
   split,
+  toLowerCase,
+  toUpperCase,
   trim,
   trimEnd,
   trimStart,
@@ -89,6 +93,38 @@ describe('shared.String', () => {
   describe('trimEnd', () => {
     it('removes the trailing white space and line terminator characters from a string', () => {
       expect(trimEnd('abc ')).toEqual('abc');
+    });
+  });
+
+  describe('indexOf', () => {
+    it('returns the position of the first occurrence of a substring', () => {
+      expect(indexOf('b')('abc')).toEqual(1);
+    });
+  });
+
+  describe('toLowerCase', () => {
+    it('converts all the alphabetic characters in a string to lowercase', () => {
+      expect(toLowerCase('AbC123')).toEqual('abc123');
+    });
+  });
+
+  describe('toUpperCase', () => {
+    it('converts all the alphabetic characters in a string to uppercase', () => {
+      expect(toUpperCase('AbC123')).toEqual('ABC123');
+    });
+  });
+
+  describe('slice', () => {
+    it('returns a copy of the string', () => {
+      expect(slice()('abcde')).toEqual('abcde');
+    });
+
+    it('returns a copy of the section of the string from index 2', () => {
+      expect(slice(2)('abcde')).toEqual('cde');
+    });
+
+    it('returns a copy of the section of the string from index 2 to index 4 (exclusive)', () => {
+      expect(slice(2, 4)('abcde')).toEqual('cd');
     });
   });
 });

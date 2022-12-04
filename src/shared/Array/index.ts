@@ -85,3 +85,15 @@ export const includes =
   <T>(searchElement: T) =>
   (array: T[]) =>
     array.includes(searchElement);
+
+export const find =
+  <T>(fn: (item: T, index: number, array: T[]) => boolean, thisArg?: unknown) =>
+  (array: T[]) =>
+    array.find(fn, thisArg);
+
+export const chunk =
+  <T>(size: number) =>
+  (array: T[]): T[][] =>
+    Array(Math.ceil(array.length / size))
+      .fill(undefined)
+      .map((_, i) => array.slice(size * i, size * i + size));

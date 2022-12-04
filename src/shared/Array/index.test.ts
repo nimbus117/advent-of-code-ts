@@ -1,11 +1,14 @@
 import {
   all,
   any,
+  chunk,
   filter,
+  find,
   first,
   flat,
   flatMap,
   fromIterable,
+  includes,
   join,
   last,
   map,
@@ -236,6 +239,51 @@ describe('shared.Array', () => {
 
     it('returns a copy of the section of the array from index 2 to index 4 (exclusive)', () => {
       expect(slice(2, 4)([1, 2, 3, 4, 5])).toEqual([3, 4]);
+    });
+  });
+
+  describe('includes', () => {
+    it('should return true', () => {
+      expect(includes(5)([5, 4, 3, 2, 1])).toBe(true);
+    });
+
+    it('should return false', () => {
+      expect(includes(6)([5, 4, 3, 2, 1])).toBe(false);
+    });
+  });
+
+  describe('find', () => {
+    it('should find the first even number', () => {
+      const findFirstEven = find(isEven);
+      expect(findFirstEven([1, 2, 3, 4])).toEqual(2);
+    });
+
+    it('should return undefined when no element can be found that matches the predicate', () => {
+      const findFirstEven = find(isEven);
+      expect(findFirstEven([1, 3, 5, 7])).toEqual(undefined);
+    });
+
+    it('should return the first element in the array that is in the set', () => {
+      const letters = new Set(['b', 'c']);
+      const findFirstLetter = find(letters.has, letters);
+      expect(findFirstLetter(['a', 'b', 'c'])).toEqual('b');
+    });
+  });
+
+  describe('chunk', () => {
+    it('should chunk the array into sub-arrays of length 2', () => {
+      expect(chunk(2)([5, 4, 3, 2, 1, 0])).toEqual([
+        [5, 4],
+        [3, 2],
+        [1, 0],
+      ]);
+    });
+
+    it('should chunk the array into sub-arrays of length 3 with the last array only containing 2 numbers', () => {
+      expect(chunk(3)([5, 4, 3, 2, 1])).toEqual([
+        [5, 4, 3],
+        [2, 1],
+      ]);
     });
   });
 });
