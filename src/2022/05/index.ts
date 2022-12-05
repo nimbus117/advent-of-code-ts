@@ -7,7 +7,7 @@ type Stacks = string[][];
 type Procedure = { count: number; from: number; to: number };
 type StackProc = { stacks: Stacks; procedure: Procedure[] };
 
-const parseProcedure = (proc: string) => {
+const parseProcedure = map<string, Procedure>((proc) => {
   const matches = proc.match(
     new RegExp(/^move ([\d]*) from ([\d]) to ([\d])$/)
   );
@@ -17,46 +17,41 @@ const parseProcedure = (proc: string) => {
     from: parseInt((matches ?? '0')[2]) - 1,
     to: parseInt((matches ?? '0')[3]) - 1,
   };
-};
+});
 
-const parseStacks = (stacks: Stacks, line: string) => {
-  if (line[1] === '1') return stacks;
+const parseStacks = reduceI<string, Stacks>((stacks, line) => {
+  const _stacks = stacks.slice();
+  if (line[1] === '1') return _stacks;
   for (let i = 1, column = 0; i < line.length; i += 4, column++) {
-    if (!stacks[column]) stacks[column] = [];
-    if (line[i] !== ' ') stacks[column].push(line[i]);
+    if (!_stacks[column]) _stacks[column] = [];
+    if (line[i] !== ' ') _stacks[column].push(line[i]);
   }
-  return stacks;
-};
+  return _stacks;
+}, []);
 
-const parse = (input: string) => {
-  const stacksAndProcedure = input.split('\n\n');
-  const stacks = pipe(stacksAndProcedure[0])
-    ._(split('\n'))
-    ._(reduceI(parseStacks, []))
-    .$();
-  const procedure = pipe(stacksAndProcedure[1])
-    ._(parseLinesOfStrings)
-    ._(map(parseProcedure))
-    .$();
+const parse = (input: string): StackProc => {
+  const [s, p] = input.split('\n\n');
+  const stacks = pipe(s)._(split('\n'))._(parseStacks).$();
+  const procedure = pipe(p)._(parseLinesOfStrings)._(parseProcedure).$();
   return { stacks, procedure };
 };
 
-const moveCrates1 = ({ stacks, procedure }: StackProc) =>
+const moveCrates1 = ({ stacks, procedure }: StackProc): Stacks =>
   procedure.reduce((stacks, proc) => {
     for (let i = 0; i < proc.count; i++) {
       const crate = stacks[proc.from].shift();
       if (typeof crate === 'string') stacks[proc.to].unshift(crate);
     }
     return stacks;
-  }, stacks);
+  }, stacks.slice());
 
-const moveCrates2 = ({ stacks, procedure }: StackProc) =>
+const moveCrates2 = ({ stacks, procedure }: StackProc): Stacks =>
   procedure.reduce((stacks, proc) => {
     const crates = stacks[proc.from].slice(0, proc.count);
     stacks[proc.from] = stacks[proc.from].slice(proc.count);
     stacks[proc.to].unshift(...crates);
     return stacks;
-  }, stacks);
+  }, stacks.slice());
 
 const getTopCrates = (stacks: Stacks) =>
   pipe(stacks)._(map(first))._(join('')).$();
