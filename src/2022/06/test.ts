@@ -1,6 +1,6 @@
 import { part1, part2 } from './';
 
-describe('2022 day05', () => {
+describe('2022 day06', () => {
   test('part1', () => {
     expect(part1('mjqjpqmgbljsphdztnvjfqwrcgsmlb')).toBe(7);
     expect(part1('zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw')).toBe(11);

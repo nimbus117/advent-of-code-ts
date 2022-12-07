@@ -5,7 +5,7 @@ if [ -z $1 ] || [ -z $2 ]; then
   exit 1
 fi
 
-path="./src/$1/$2"
+path=./src/$1/$2
 
 if [ -d $path ]; then
   echo "Directory $path already exists"
@@ -18,6 +18,9 @@ input=$path/input
 
 mkdir -p $path
 
-touch $index $test $input
+cp ./templates/* $path
+
+sed -i "s/{{year}}/$1/" $test
+sed -i "s/{{day}}/$2/" $test
 
 echo -ne '\ekvim\e\\'; vim -p $index $test $input
