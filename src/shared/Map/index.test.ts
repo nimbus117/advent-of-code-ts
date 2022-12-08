@@ -1,4 +1,4 @@
-import { MapWithDefault, MapWithError } from '.';
+import { entries, keys, MapWithDefault, MapWithError, values } from '.';
 
 describe('shared', () => {
   describe('MapWithDefault', () => {
@@ -42,6 +42,39 @@ describe('shared', () => {
 
     it('throws an error if the key DOES NOT exist', () => {
       expect(() => testMap.get('blah')).toThrow('Could not find key: blah');
+    });
+  });
+
+  describe('entries', () => {
+    it('returns an array of key value pairs', () => {
+      const map = new Map([
+        [1, 'a'],
+        [2, 'b'],
+      ]);
+      expect(entries(map)).toEqual([
+        [1, 'a'],
+        [2, 'b'],
+      ]);
+    });
+  });
+
+  describe('keys', () => {
+    it('returns an array of keys', () => {
+      const map = new Map([
+        [1, 'a'],
+        [2, 'b'],
+      ]);
+      expect(keys(map)).toEqual([1, 2]);
+    });
+  });
+
+  describe('values', () => {
+    it('returns an array of values', () => {
+      const map = new Map([
+        [1, 'a'],
+        [2, 'b'],
+      ]);
+      expect(values(map)).toEqual(['a', 'b']);
     });
   });
 });

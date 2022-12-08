@@ -22,3 +22,9 @@ export class MapWithError<K, V> extends Map<K, V> {
     throw new Error(`Could not find key: ${key}`);
   }
 }
+
+export const keys = <K, V>(input: Map<K, V>) => [...input.keys()];
+
+export const values = <K, V>(input: Map<K, V>) => [...input.values()];
+
+export const entries = <K, V>(input: Map<K, V>) => [...input.entries()];

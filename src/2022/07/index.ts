@@ -1,6 +1,6 @@
-import { filter, first, fromIterable, last, map, sort } from '@shared/Array';
+import { filter, first, last, sort } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { MapWithDefault } from '@shared/Map';
+import { MapWithDefault, values } from '@shared/Map';
 import { sum } from '@shared/Math';
 import { parseLinesOfStrings } from '@shared/ParseInput';
 
@@ -23,10 +23,7 @@ function getFolderSizes(input: string) {
     }
   }
 
-  return pipe(dirMap)
-    ._(fromIterable)
-    ._(map((x) => x[1]))
-    .$();
+  return values(dirMap);
 }
 
 export const part1 = (input: string) =>
