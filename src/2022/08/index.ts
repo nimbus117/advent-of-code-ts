@@ -1,77 +1,55 @@
+import { multiply } from '@shared/Math';
 import { parseArraysOfNumbers } from '@shared/ParseInput';
 
-function checkLeft(x: number, y: number, array: number[][]) {
-  let score = 0;
-  for (let i = x - 1; i >= 0; i--) {
-    score++;
-    if (array[y][i] >= array[y][x]) {
-      return { visible: false, score };
-    }
-  }
-  return { visible: true, score };
-}
+type Set = (n: number) => number;
+type Pred = (n: number, a: number[][]) => boolean;
+type CB = (i: number, j: number, trees: number[][], result: number) => number;
+type CheckResult = { visible: boolean; score: number };
+type Check = (x: number, y: number, array: number[][]) => CheckResult;
 
-function checkRight(x: number, y: number, array: number[][]) {
-  let score = 0;
-  for (let i = x + 1; i < array[0].length; i++) {
-    score++;
-    if (array[y][i] >= array[y][x]) {
-      return { visible: false, score };
-    }
-  }
-  return { visible: true, score };
-}
+const check =
+  (inc: boolean, vertical: boolean): Check =>
+  (x, y, array) => {
+    let score = 0;
+    const set: Set = inc ? (n) => n + 1 : (n) => n - 1;
+    const predicate: Pred = inc ? (n, a) => n < a[0].length : (n) => n >= 0;
 
-function checkUp(x: number, y: number, array: number[][]) {
-  let score = 0;
-  for (let i = y - 1; i >= 0; i--) {
-    score++;
-    if (array[i][x] >= array[y][x]) {
-      return { visible: false, score };
+    for (let i = set(vertical ? y : x); predicate(i, array); i = set(i)) {
+      score++;
+      const direction = vertical
+        ? array[i][x] >= array[y][x]
+        : array[y][i] >= array[y][x];
+      if (direction) {
+        return { visible: false, score };
+      }
     }
-  }
-  return { visible: true, score };
-}
+    return { visible: true, score };
+  };
 
-function checkDown(x: number, y: number, array: number[][]) {
-  let score = 0;
-  for (let i = y + 1; i < array.length; i++) {
-    score++;
-    if (array[i][x] >= array[y][x]) {
-      return { visible: false, score };
-    }
-  }
-  return { visible: true, score };
-}
+const checks = [
+  check(false, false),
+  check(true, false),
+  check(false, true),
+  check(true, true),
+];
 
-export const part1 = (input: string) => {
+export const checkTrees = (input: string, cb: CB) => {
   const trees = parseArraysOfNumbers(input);
-  let visibleCount = 0;
-  visibleCount += trees.length * 2;
-  visibleCount += (trees[0].length - 2) * 2;
-
-  for (let i = 1; i < trees.length - 1; i++) {
-    for (let j = 1; j < trees.length - 1; j++) {
-      const checks = [checkDown, checkUp, checkRight, checkLeft].some(
-        (x) => x(i, j, trees).visible
-      );
-      if (checks) visibleCount++;
+  let result = 0;
+  for (let i = 0; i < trees.length; i++) {
+    for (let j = 0; j < trees[0].length; j++) {
+      result = cb(i, j, trees, result);
     }
   }
-  return visibleCount;
+  return result;
 };
 
-export const part2 = (input: string) => {
-  const trees = parseArraysOfNumbers(input);
-  let highest = 0;
+export const part1 = (input: string) =>
+  checkTrees(input, (i, j, trees, result) =>
+    checks.some((x) => x(i, j, trees).visible) ? result + 1 : result
+  );
 
-  for (let i = 1; i < trees.length - 1; i++) {
-    for (let j = 1; j < trees.length - 1; j++) {
-      const totalScore = [checkDown, checkUp, checkRight, checkLeft]
-        .map((x) => x(i, j, trees).score)
-        .reduce((acc, cur) => acc * cur);
-      highest = Math.max(highest, totalScore);
-    }
-  }
-  return highest;
-};
+export const part2 = (input: string) =>
+  checkTrees(input, (i, j, trees, result) =>
+    Math.max(result, multiply(checks.map((x) => x(i, j, trees).score)))
+  );
