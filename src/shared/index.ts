@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export { MapWithDefault, MapWithError } from './Map';
+export * as MAP from './Map';
 
 export * as A from './Array';
 

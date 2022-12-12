@@ -2,7 +2,11 @@ import { pipe } from '../Function';
 
 export const first = <T>(array: T[]): T => array[0];
 
+export const firstN = <T>(n: number) => slice<T>(0, n);
+
 export const last = <T>(array: T[]): T => array[array.length - 1];
+
+export const lastN = <T>(n: number) => slice<T>(n * -1);
 
 export const transpose = <T>(array: T[][]): T[][] =>
   array[0].map((_, i) => array.map((row) => row[i]));
