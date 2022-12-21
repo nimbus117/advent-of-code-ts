@@ -5,6 +5,7 @@ import {
   parseCommaSeparatedLineOfNumbers,
   parseLineOfCharacters,
   parseLineOfNumbers,
+  parseArraysOfCharacters,
 } from '.';
 
 describe('shared.ParseInput', () => {
@@ -39,6 +40,22 @@ describe('shared.ParseInput', () => {
         [1, 2, 3],
         [4, 5, 6],
         [7, 8, 9],
+      ]);
+    });
+
+    it('handles input with only one newline character', () => {
+      const input = '123\n';
+      expect(parseArraysOfNumbers(input)).toEqual([[1, 2, 3]]);
+    });
+  });
+
+  describe('parseArraysOfCharacters', () => {
+    it('splits the input string at each newline character and between every character returning a 2 dimensional array of characters', () => {
+      const input = 'abc\ndef\nghi\n';
+      expect(parseArraysOfCharacters(input)).toEqual([
+        ['a', 'b', 'c'],
+        ['d', 'e', 'f'],
+        ['g', 'h', 'i'],
       ]);
     });
 

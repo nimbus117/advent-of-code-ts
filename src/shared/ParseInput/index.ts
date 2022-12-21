@@ -1,21 +1,20 @@
-import { map } from '../Array';
-import { split, trim } from '../String';
-import { pipe } from '../Function';
-
 export const parseLineOfCharacters = (input: string): string[] =>
-  pipe(input)._(trim)._(split('')).$();
+  input.trim().split('');
 
 export const parseLineOfNumbers = (input: string): number[] =>
-  pipe(input)._(parseLineOfCharacters)._(map(Number)).$();
+  parseLineOfCharacters(input).map(Number);
 
 export const parseCommaSeparatedLineOfNumbers = (input: string): number[] =>
-  pipe(input)._(trim)._(split(','))._(map(Number)).$();
+  input.trim().split(',').map(Number);
 
 export const parseLinesOfStrings = (input: string): string[] =>
-  pipe(input)._(trim)._(split('\n')).$();
+  input.trim().split('\n');
 
 export const parseLinesOfNumbers = (input: string): number[] =>
-  pipe(input)._(parseLinesOfStrings)._(map(Number)).$();
+  parseLinesOfStrings(input).map(Number);
 
 export const parseArraysOfNumbers = (input: string): number[][] =>
-  pipe(input)._(parseLinesOfStrings)._(map(parseLineOfNumbers)).$();
+  parseLinesOfStrings(input).map(parseLineOfNumbers);
+
+export const parseArraysOfCharacters = (input: string): string[][] =>
+  parseLinesOfStrings(input).map(parseLineOfCharacters);
