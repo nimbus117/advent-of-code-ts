@@ -1,20 +1,18 @@
-export const parseLineOfCharacters = (input: string): string[] =>
-  input.trim().split('');
+export const parseLineOfCharacters = (input: string) => input.trim().split('');
 
-export const parseLineOfNumbers = (input: string): number[] =>
+export const parseLineOfNumbers = (input: string) =>
   parseLineOfCharacters(input).map(Number);
 
-export const parseCommaSeparatedLineOfNumbers = (input: string): number[] =>
+export const parseCommaSeparatedLineOfNumbers = (input: string) =>
   input.trim().split(',').map(Number);
 
-export const parseLinesOfStrings = (input: string): string[] =>
-  input.trim().split('\n');
+export const parseLinesOfStrings = (input: string) => input.trim().split('\n');
 
-export const parseLinesOfNumbers = (input: string): number[] =>
+export const parseLinesOfNumbers = (input: string) =>
   parseLinesOfStrings(input).map(Number);
 
-export const parseArraysOfNumbers = (input: string): number[][] =>
+export const parseArraysOfNumbers = (input: string) =>
   parseLinesOfStrings(input).map(parseLineOfNumbers);
 
-export const parseArraysOfCharacters = (input: string): string[][] =>
+export const parseArraysOfCharacters = (input: string) =>
   parseLinesOfStrings(input).map(parseLineOfCharacters);

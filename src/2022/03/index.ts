@@ -10,21 +10,14 @@ const getPriority = (char: string) =>
     ._((x) => (isUpperCase(char) ? x + 27 : x + 1))
     .$();
 
-const findError = (bag: string) => {
-  const isError = (x: string) =>
-    bag
-      .slice(bag.length / 2)
-      .split('')
-      .includes(x);
-
-  return pipe(bag)
+const findError = (bag: string) =>
+  pipe(bag)
     ._(slice(0, bag.length / 2))
     ._(split(''))
-    ._(filter(isError))
+    ._(filter((x: string) => bag.slice(bag.length / 2).includes(x)))
     ._(first)
     ._(getPriority)
     .$();
-};
 
 const findBadge = (bags: string[][]) =>
   getPriority(

@@ -40,6 +40,7 @@ class Monkey {
 
 class Game {
   monkeys: Monkey[];
+
   constructor(input: string) {
     this.monkeys = input.split('\n\n').map((x) => new Monkey(x));
   }

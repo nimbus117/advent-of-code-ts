@@ -1,17 +1,15 @@
-import { pipe } from '../Function';
-
-export const first = <T>(array: T[]): T => array[0];
+export const first = <T>(array: T[]) => array[0];
 
 export const firstN = <T>(n: number) => slice<T>(0, n);
 
-export const last = <T>(array: T[]): T => array[array.length - 1];
+export const last = <T>(array: T[]) => array[array.length - 1];
 
 export const lastN = <T>(n: number) => slice<T>(n * -1);
 
-export const transpose = <T>(array: T[][]): T[][] =>
+export const transpose = <T>(array: T[][]) =>
   array[0].map((_, i) => array.map((row) => row[i]));
 
-export const range = (start: number, end: number): number[] => {
+export const range = (start: number, end: number) => {
   const fn =
     end > start
       ? (value: number) => value + start
@@ -32,7 +30,7 @@ export const filter =
 
 export const reduce =
   <T>(fn: (previous: T, current: T, index: number, array: T[]) => T) =>
-  (array: T[]): T =>
+  (array: T[]) =>
     array.reduce(fn);
 
 // reduce with Initial value
@@ -41,7 +39,7 @@ export const reduceI =
     fn: (previous: O, current: T, index: number, array: T[]) => O,
     initialValue: O
   ) =>
-  (array: T[]): O =>
+  (array: T[]) =>
     array.reduce(fn, initialValue);
 
 export const any =
@@ -62,11 +60,11 @@ export const flat =
 export const flatMap =
   <T, O>(fn: (item: T, index: number, array: T[]) => O, thisArg?: unknown) =>
   (array: T[]) =>
-    pipe(array)._(map(fn, thisArg))._(flat()).$();
+    array.map(fn, thisArg).flat();
 
 export const join =
   <T>(separator?: string) =>
-  (array: T[]): string =>
+  (array: T[]) =>
     array.join(separator);
 
 export const fromIterable = <T>(iterable: {
@@ -75,10 +73,10 @@ export const fromIterable = <T>(iterable: {
 
 export const sort =
   <T>(fn?: (a: T, b: T) => number) =>
-  (array: T[]): T[] =>
+  (array: T[]) =>
     array.slice().sort(fn);
 
-export const reverse = <T>(array: T[]): T[] => array.reverse();
+export const reverse = <T>(array: T[]) => array.reverse();
 
 export const slice =
   <T>(start?: number, end?: number) =>
@@ -97,7 +95,7 @@ export const find =
 
 export const chunk =
   <T>(size: number) =>
-  (array: T[]): T[][] =>
+  (array: T[]) =>
     Array(Math.ceil(array.length / size))
       .fill(undefined)
       .map((_, i) => array.slice(size * i, size * i + size));

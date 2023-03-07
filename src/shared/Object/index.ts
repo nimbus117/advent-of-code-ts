@@ -8,9 +8,11 @@ type Mode = 'omit' | 'pick';
 
 const createEntriesFilter =
   (keys: (string | number)[], mode: Mode) => (entries: ObjEntries) => {
-    const keysSet = new Set(keys.map(String));
-    return entries.filter(([key]) =>
-      mode === 'omit' ? !keysSet.has(key) : keysSet.has(key)
+    const _keys = keys.map(String);
+    return entries.filter(
+      mode === 'omit'
+        ? ([key]) => !_keys.includes(key)
+        : ([key]) => _keys.includes(key)
     );
   };
 
