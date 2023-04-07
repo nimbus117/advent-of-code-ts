@@ -1,6 +1,6 @@
 import { chunk, filter, first, map } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { sum } from '@shared/Math';
+import { sum } from '@shared/Number';
 import { parseLinesOfStrings } from '@shared/ParseInput';
 import { indexOf, isUpperCase, slice, split } from '@shared/String';
 

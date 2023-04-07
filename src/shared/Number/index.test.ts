@@ -1,7 +1,7 @@
-import { count, sum, multiply, isEven, isOdd, factorial, max, min } from '.';
+import { count, sum, multiply, isEven, isOdd, max, min } from '.';
 import { MapWithDefault } from '../Map';
 
-describe('shared.Math', () => {
+describe('shared.Number', () => {
   describe('isEven', () => {
     it('returns true when the number is even', () => {
       expect(isEven(0)).toEqual(true);
@@ -43,26 +43,6 @@ describe('shared.Math', () => {
   describe('multiply', () => {
     it('should multiply all the numbers in an array', () => {
       expect(multiply([1, 2, 3, 4, 5])).toEqual(120);
-    });
-  });
-
-  describe('factorial', () => {
-    it('should return the factorial of 7', () => {
-      expect(factorial(7n)).toEqual(5040n);
-    });
-
-    it('should throw an error if the number is not an integer', () => {
-      expect(() => factorial(BigInt(7.5))).toThrow(
-        'The number 7.5 cannot be converted to a BigInt because it is not an integer'
-      );
-    });
-
-    it('should throw an error if the number is not positive', () => {
-      expect(() => factorial(-7n)).toThrow('Number must be positive');
-    });
-
-    it('should return 1 for factorial 0', () => {
-      expect(factorial(0n)).toEqual(1n);
     });
   });
 

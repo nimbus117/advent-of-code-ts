@@ -1,6 +1,6 @@
 import { reduceI } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { count } from '@shared/Math';
+import { count } from '@shared/Number';
 import { get } from '@shared/Object';
 import { parseLineOfCharacters } from '@shared/ParseInput';
 import { Tuple } from '@shared/Types';

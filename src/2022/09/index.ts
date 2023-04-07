@@ -3,7 +3,7 @@ import { parseLinesOfStrings } from '@shared/ParseInput';
 
 const getTailPositions = (input: string, knotCount: number) => {
   const tPositions = new Set(['0-0']);
-  const knots: number[][] = range(0, knotCount - 1).map(() => [0, 0]);
+  const knots: number[][] = range(knotCount).map(() => [0, 0]);
   const motions = parseLinesOfStrings(input).map((m) => m.split(' '));
 
   motions.forEach(([direction, steps]) => {

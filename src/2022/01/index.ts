@@ -1,6 +1,6 @@
 import { lastN, map, sort } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { max, sum } from '@shared/Math';
+import { max, sum } from '@shared/Number';
 import { parseLinesOfNumbers } from '@shared/ParseInput';
 import { split } from '@shared/String';
 

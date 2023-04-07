@@ -1,12 +1,10 @@
-/* istanbul ignore file */
-
-export * as MAP from './Map';
-
 export * as A from './Array';
 
 export * as F from './Function';
 
-export * as M from './Math';
+export * as M from './Map';
+
+export * as N from './Number';
 
 export * as O from './Object';
 

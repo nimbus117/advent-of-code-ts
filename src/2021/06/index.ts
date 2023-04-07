@@ -1,6 +1,6 @@
 import { flatMap, range } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { count, sum } from '@shared/Math';
+import { count, sum } from '@shared/Number';
 import { parseCommaSeparatedLineOfNumbers } from '@shared/ParseInput';
 
 const simulateGrowth =
@@ -12,7 +12,7 @@ const simulateGrowth =
 
 const calculateGrowth = (days: number) => (fish: number[]) => {
   const count = range(0, 8).map((c) => fish.filter((f) => f === c).length);
-  return range(0, days - 1).reduce((acc) => {
+  return range(days).reduce((acc) => {
     const newFish = acc.shift() || 0;
     acc[8] = newFish;
     acc[6] += newFish;

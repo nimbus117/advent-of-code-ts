@@ -26,7 +26,7 @@ const flash = (grid: number[][], x: number, y: number) => {
 };
 
 export const part1 = (input: string) =>
-  range(1, 100).reduce(
+  range(100).reduce(
     (acc) => {
       acc.grid = acc.grid.map((y: number[]) => y.map((x) => x + 1));
       range(0, 9).forEach((y) =>

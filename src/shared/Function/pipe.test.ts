@@ -1,5 +1,5 @@
 import { pipe } from '.';
-import { isEven, sum } from '../Math';
+import { isEven, sum } from '../Number';
 import { map } from '../Array';
 
 describe('shared.Function', () => {

@@ -1,7 +1,7 @@
 import { filter, flatMap, fromIterable, range, reduceI } from '@shared/Array';
 import { pipe } from '@shared/Function';
 import { MapWithDefault } from '@shared/Map';
-import { count } from '@shared/Math';
+import { count } from '@shared/Number';
 import { parseLinesOfStrings } from '@shared/ParseInput';
 import { TupleMut } from '@shared/Types';
 

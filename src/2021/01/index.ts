@@ -1,6 +1,6 @@
 import { filter, map } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { count, sum } from '@shared/Math';
+import { count, sum } from '@shared/Number';
 import { parseLinesOfNumbers } from '@shared/ParseInput';
 
 const hasIncreased = (depth: number, i: number, arr: number[]) =>

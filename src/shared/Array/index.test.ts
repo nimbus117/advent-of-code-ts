@@ -23,7 +23,7 @@ import {
   transpose,
 } from '.';
 import { MapWithDefault } from '../Map';
-import { isEven } from '../Math';
+import { isEven } from '../Number';
 
 describe('shared.Array', () => {
   describe('transpose', () => {
@@ -79,6 +79,10 @@ describe('shared.Array', () => {
 
     it('should return an array of descending numbers from the first to second argument', () => {
       expect(range(5, 1)).toEqual([5, 4, 3, 2, 1]);
+    });
+
+    it('should return an array of ascending numbers from 1 to the given number', () => {
+      expect(range(5)).toEqual([1, 2, 3, 4, 5]);
     });
   });
 

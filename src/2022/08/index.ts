@@ -1,4 +1,4 @@
-import { multiply } from '@shared/Math';
+import { multiply } from '@shared/Number';
 import { parseArraysOfNumbers } from '@shared/ParseInput';
 
 type Set = (n: number) => number;

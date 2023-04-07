@@ -1,10 +1,10 @@
-import { allPass, anyPass } from '.';
-import { isOdd } from '../Math';
+import { allTrue, anyTrue } from '.';
+import { isOdd } from '../Number';
 import { isCapitalized, isLengthAtLeast } from '../String';
 
 describe('shared.Function', () => {
   describe('anyPass', () => {
-    const isForbidden = anyPass([(x: number) => x > 10, isOdd]);
+    const isForbidden = anyTrue([(x: number) => x > 10, isOdd]);
 
     it('returns true if ANY function test returns true', () => {
       expect(isForbidden(5)).toBe(true);
@@ -17,7 +17,7 @@ describe('shared.Function', () => {
   });
 
   describe('allPass', () => {
-    const isName = allPass([isCapitalized, isLengthAtLeast(2)]);
+    const isName = allTrue([isCapitalized, isLengthAtLeast(2)]);
 
     it('returns true if ALL function tests return true', () => {
       expect(isName('Bob')).toBe(true);

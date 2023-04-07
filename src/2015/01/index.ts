@@ -1,6 +1,6 @@
 import { map } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { sum } from '@shared/Math';
+import { sum } from '@shared/Number';
 import { parseLineOfCharacters } from '@shared/ParseInput';
 
 const instructionToInt = (x: string) => (x === '(' ? 1 : -1);

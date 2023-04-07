@@ -1,11 +1,9 @@
 import { map, reduceI, slice, sort } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { multiply, sum } from '@shared/Math';
+import { multiply, sum } from '@shared/Number';
 import { parseLinesOfStrings } from '@shared/ParseInput';
-import { split } from '@shared/String';
 
-const getDimensions = (present: string) =>
-  pipe(present)._(split('x'))._(map(Number)).$();
+const getDimensions = (present: string) => present.split('x').map(Number);
 
 const getRequiredPaper = reduceI((total, present: string) => {
   const [l, w, h] = getDimensions(present);
@@ -17,12 +15,14 @@ const getRequiredPaper = reduceI((total, present: string) => {
 const getRequiredRibbon = reduceI((total, present: string) => {
   const dimensions = getDimensions(present);
   const bowRibbon = multiply(dimensions);
+
   const wrapRibbon = pipe(dimensions)
     ._(sort((a, b) => a - b))
     ._(slice(0, 2))
     ._(map((x) => x + x))
     ._(sum)
     .$();
+
   return total + wrapRibbon + bowRibbon;
 }, 0);
 

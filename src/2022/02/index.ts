@@ -1,6 +1,6 @@
 import { map } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { sum } from '@shared/Math';
+import { sum } from '@shared/Number';
 import { parseLinesOfStrings } from '@shared/ParseInput';
 
 const p1Choice = ([char]: string) =>

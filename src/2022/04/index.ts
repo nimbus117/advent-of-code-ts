@@ -2,7 +2,7 @@ import { filter, map, range, sort } from '@shared/Array';
 import { pipe } from '@shared/Function';
 import { parseLinesOfStrings } from '@shared/ParseInput';
 import { split } from '@shared/String';
-import { count } from '@shared/Math';
+import { count } from '@shared/Number';
 
 const parsePair = (pair: string) =>
   pipe(pair)

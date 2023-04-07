@@ -1,6 +1,6 @@
 import { filter, map, sort } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { sum } from '@shared/Math';
+import { sum } from '@shared/Number';
 import { parseLinesOfStrings } from '@shared/ParseInput';
 
 const parse = (input: string) =>

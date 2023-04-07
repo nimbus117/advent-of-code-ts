@@ -12,8 +12,13 @@ else
     parts.forEach((part) => {
       if (solution[part]) {
         const start = new Date().valueOf();
-        console.log(`${part}:`, solution[part](input));
+
+        const result = solution[part](input);
+
+        console.log(`${part}:`, result);
+
         const end = new Date().valueOf();
+
         console.log(`${end - start}ms\n`);
       } else {
         console.log(`ERROR: Could not find export named '${part}'\n`);

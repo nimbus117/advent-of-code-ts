@@ -1,5 +1,5 @@
 import { last, range } from '@shared/Array';
-import { sum } from '@shared/Math';
+import { sum } from '@shared/Number';
 import { parseCommaSeparatedLineOfNumbers } from '@shared/ParseInput';
 
 type Cost = (c: number, p: number) => number;

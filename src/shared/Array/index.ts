@@ -1,22 +1,15 @@
 export const first = <T>(array: T[]) => array[0];
 
-export const firstN = <T>(n: number) => slice<T>(0, n);
-
 export const last = <T>(array: T[]) => array[array.length - 1];
 
+export const slice =
+  <T>(start?: number, end?: number) =>
+  (array: T[]) =>
+    array.slice(start, end);
+
+export const firstN = <T>(n: number) => slice<T>(0, n);
+
 export const lastN = <T>(n: number) => slice<T>(n * -1);
-
-export const transpose = <T>(array: T[][]) =>
-  array[0].map((_, i) => array.map((row) => row[i]));
-
-export const range = (start: number, end: number) => {
-  const fn =
-    end > start
-      ? (value: number) => value + start
-      : (value: number) => start - value;
-
-  return [...Array(Math.abs(start - end) + 1).keys()].map(fn);
-};
 
 export const map =
   <T, O>(fn: (item: T, index: number, array: T[]) => O, thisArg?: unknown) =>
@@ -78,11 +71,6 @@ export const sort =
 
 export const reverse = <T>(array: T[]) => array.reverse();
 
-export const slice =
-  <T>(start?: number, end?: number) =>
-  (array: T[]) =>
-    array.slice(start, end);
-
 export const includes =
   <T>(searchElement: T) =>
   (array: T[]) =>
@@ -93,9 +81,25 @@ export const find =
   (array: T[]) =>
     array.find(fn, thisArg);
 
+export const transpose = <T>(array: T[][]) =>
+  array[0].map((_, i) => array.map((row) => row[i]));
+
+export const create = (length: number): undefined[] => [
+  ...Array(Math.abs(length)),
+];
+
 export const chunk =
   <T>(size: number) =>
   (array: T[]) =>
-    Array(Math.ceil(array.length / size))
-      .fill(undefined)
-      .map((_, i) => array.slice(size * i, size * i + size));
+    create(Math.ceil(array.length / size)).map((_, i) =>
+      array.slice(size * i, size * i + size)
+    );
+
+export const range = (a: number, b?: number) => {
+  const [start, end] = b !== undefined ? [a, b] : [1, a];
+
+  const fn: (_: unknown, i: number) => number =
+    end > start ? (_, i) => i + start : (_, i) => start - i;
+
+  return create(Math.abs(start - end) + 1).map(fn);
+};
