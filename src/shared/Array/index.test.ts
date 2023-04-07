@@ -5,14 +5,12 @@ import {
   filter,
   find,
   first,
-  firstN,
   flat,
   flatMap,
   fromIterable,
   includes,
   join,
   last,
-  lastN,
   map,
   range,
   reduce,
@@ -49,26 +47,10 @@ describe('shared.Array', () => {
     });
   });
 
-  describe('firstN', () => {
-    it('should return the first N items in an array', () => {
-      const getFirst2 = firstN<number>(2);
-      expect(getFirst2([1, 2, 3, 4, 5])).toEqual([1, 2]);
-      expect(firstN(3)(['a', 'b', 'c', 'd', 'e'])).toEqual(['a', 'b', 'c']);
-    });
-  });
-
   describe('last', () => {
     it('should return the last item in an array', () => {
       expect(last([1, 2, 3, 4, 5])).toEqual(5);
       expect(last(['a', 'b', 'c', 'd', 'e'])).toEqual('e');
-    });
-  });
-
-  describe('lastN', () => {
-    it('should return the last N items in an array', () => {
-      const getLast2 = lastN<number>(2);
-      expect(getLast2([1, 2, 3, 4, 5])).toEqual([4, 5]);
-      expect(lastN(3)(['a', 'b', 'c', 'd', 'e'])).toEqual(['c', 'd', 'e']);
     });
   });
 

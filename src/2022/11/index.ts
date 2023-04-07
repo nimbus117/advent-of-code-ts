@@ -1,4 +1,4 @@
-import { lastN, map, sort } from '@shared/Array';
+import { map, slice, sort } from '@shared/Array';
 import { pipe } from '@shared/Function';
 import { multiply } from '@shared/Number';
 import { parseLinesOfStrings } from '@shared/ParseInput';
@@ -59,7 +59,7 @@ class Game {
     pipe(this.monkeys)
       ._(map((x) => x.inspected))
       ._(sort((a, b) => a - b))
-      ._(lastN(2))
+      ._(slice(-2))
       ._(multiply)
       .$();
 }

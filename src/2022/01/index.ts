@@ -1,4 +1,4 @@
-import { lastN, map, sort } from '@shared/Array';
+import { map, slice, sort } from '@shared/Array';
 import { pipe } from '@shared/Function';
 import { max, sum } from '@shared/Number';
 import { parseLinesOfNumbers } from '@shared/ParseInput';
@@ -14,6 +14,6 @@ export const part2 = (input: string) =>
     ._(split('\n\n'))
     ._(map(sumCalories))
     ._(sort((a, b) => a - b))
-    ._(lastN(3))
+    ._(slice(-3))
     ._(sum)
     .$();

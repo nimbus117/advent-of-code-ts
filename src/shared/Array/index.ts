@@ -2,15 +2,6 @@ export const first = <T>(array: T[]) => array[0];
 
 export const last = <T>(array: T[]) => array[array.length - 1];
 
-export const slice =
-  <T>(start?: number, end?: number) =>
-  (array: T[]) =>
-    array.slice(start, end);
-
-export const firstN = <T>(n: number) => slice<T>(0, n);
-
-export const lastN = <T>(n: number) => slice<T>(n * -1);
-
 export const map =
   <T, O>(fn: (item: T, index: number, array: T[]) => O, thisArg?: unknown) =>
   (array: T[]) =>
@@ -68,6 +59,11 @@ export const sort =
   <T>(fn?: (a: T, b: T) => number) =>
   (array: T[]) =>
     array.slice().sort(fn);
+
+export const slice =
+  <T>(start?: number, end?: number) =>
+  (array: T[]) =>
+    array.slice(start, end);
 
 export const reverse = <T>(array: T[]) => array.reverse();
 
