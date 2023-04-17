@@ -283,6 +283,12 @@ describe('shared.Array', () => {
       ]);
     });
 
+    it('should chunk the array into 5 arrays of 20', () => {
+      const chunks = chunk(20)(range(100));
+      expect(chunks).toHaveLength(5);
+      chunks.forEach((chunk) => expect(chunk).toHaveLength(20));
+    });
+
     it('should chunk the array into sub-arrays of length 3 with the last array only containing 2 numbers', () => {
       expect(chunk(3)([5, 4, 3, 2, 1])).toEqual([
         [5, 4, 3],

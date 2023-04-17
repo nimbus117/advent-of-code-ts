@@ -1,8 +1,10 @@
 export * as A from './Array';
 
+export * as BST from './BinarySearchTree';
+
 export * as F from './Function';
 
-export * as M from './Map';
+export * as MAP from './Map';
 
 export * as N from './Number';
 

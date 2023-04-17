@@ -29,7 +29,7 @@ describe('shared.Function', () => {
     });
 
     it('filters out all valid names from an array of strings', () => {
-      expect(['James', 'SaM', 'bob', 'Jo', 'A'].filter(isName)).toMatchObject([
+      expect(['James', 'SaM', 'bob', 'Jo', 'A'].filter(isName)).toEqual([
         'James',
         'Jo',
       ]);

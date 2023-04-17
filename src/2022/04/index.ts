@@ -12,18 +12,16 @@ const parsePair = (pair: string) =>
     ._(sort((a, b) => a.length - b.length))
     .$();
 
-export const part1 = (input: string) =>
+const countPairs = (input: string, cb: (x: number[][]) => boolean) =>
   pipe(input)
     ._(parseLinesOfStrings)
     ._(map(parsePair))
-    ._(filter((x) => x[0].every((y) => x[1].includes(y))))
+    ._(filter(cb))
     ._(count)
     .$();
 
+export const part1 = (input: string) =>
+  countPairs(input, (x) => x[0].every((y) => x[1].includes(y)));
+
 export const part2 = (input: string) =>
-  pipe(input)
-    ._(parseLinesOfStrings)
-    ._(map(parsePair))
-    ._(filter((x) => x[1].some((y) => x[0].includes(y))))
-    ._(count)
-    .$();
+  countPairs(input, (x) => x[1].some((y) => x[0].includes(y)));
