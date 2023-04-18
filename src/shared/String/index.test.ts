@@ -2,8 +2,8 @@ import {
   indexOf,
   isCapitalized,
   isLengthAtLeast,
-  isLowerCase,
-  isUpperCase,
+  allLowerCase,
+  allUpperCase,
   slice,
   split,
   toLowerCase,
@@ -28,23 +28,23 @@ describe('shared.String', () => {
     });
   });
 
-  describe('isLowerCase', () => {
+  describe('allLowerCase', () => {
     it('returns true when all letters are lower case', () => {
-      expect(isLowerCase('bob')).toBe(true);
+      expect(allLowerCase('bob')).toBe(true);
     });
 
     it('returns false if any letter is NOT lower case', () => {
-      expect(isLowerCase('bOb')).toBe(false);
+      expect(allLowerCase('bOb')).toBe(false);
     });
   });
 
-  describe('isUpperCase', () => {
+  describe('allUpperCase', () => {
     it('returns true when all letters are upper case', () => {
-      expect(isUpperCase('BOB')).toBe(true);
+      expect(allUpperCase('BOB')).toBe(true);
     });
 
-    it('returns false if any letter is NOT lower case', () => {
-      expect(isLowerCase('BoB')).toBe(false);
+    it('returns false if any letter is NOT upper case', () => {
+      expect(allUpperCase('BoB')).toBe(false);
     });
   });
 

@@ -65,7 +65,7 @@ export const slice =
   (array: T[]) =>
     array.slice(start, end);
 
-export const reverse = <T>(array: T[]) => array.reverse();
+export const reverse = <T>(array: T[]) => array.slice().reverse();
 
 export const includes =
   <T>(searchElement: T) =>

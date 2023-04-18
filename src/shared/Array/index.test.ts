@@ -224,11 +224,25 @@ describe('shared.Array', () => {
         sort((a: number, b: number) => (a < b ? 1 : -1))([1, 2, 3, 4, 5])
       ).toEqual([5, 4, 3, 2, 1]);
     });
+
+    it('does not mutate the original array when sorting', () => {
+      const arr = [5, 4, 3, 2, 1];
+
+      expect(sort()(arr)).toEqual([1, 2, 3, 4, 5]);
+      expect(arr).toEqual([5, 4, 3, 2, 1]);
+    });
   });
 
   describe('reverse', () => {
     it('reverses the array', () => {
       expect(reverse([5, 4, 3, 2, 1])).toEqual([1, 2, 3, 4, 5]);
+    });
+
+    it('does not mutate the original array when reversing', () => {
+      const arr = [5, 4, 3, 2, 1];
+
+      expect(reverse(arr)).toEqual([1, 2, 3, 4, 5]);
+      expect(arr).toEqual([5, 4, 3, 2, 1]);
     });
   });
 

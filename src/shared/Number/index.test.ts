@@ -1,4 +1,4 @@
-import { count, sum, multiply, isEven, isOdd, max, min } from '.';
+import { count, sum, multiply, isEven, isOdd, max, min, roundTo } from '.';
 import { MapWithDefault } from '../Map';
 
 describe('shared.Number', () => {
@@ -91,6 +91,12 @@ describe('shared.Number', () => {
   describe('min', () => {
     it('should return the smallest number in the array', () => {
       expect(min([1, 2, 5, 4, 3])).toEqual(1);
+    });
+  });
+
+  describe('roundTo', () => {
+    it('should round the number to 3 decimal places', () => {
+      expect(roundTo(3)(1.3456)).toEqual(1.346);
     });
   });
 });
