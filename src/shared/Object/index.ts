@@ -38,3 +38,12 @@ export const get =
   <T extends Obj, K extends ObjKey<T>>(key: K) =>
   (object: T) =>
     object[key];
+
+export const isObject = (
+  input: unknown
+): input is Record<string | number | symbol, unknown> =>
+  typeof input === 'object' &&
+  input !== null &&
+  !Array.isArray(input) &&
+  !(input instanceof Map) &&
+  !(input instanceof Set);

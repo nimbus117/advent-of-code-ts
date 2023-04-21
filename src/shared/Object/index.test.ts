@@ -1,4 +1,4 @@
-import { omit, pick, get } from '.';
+import { omit, pick, get, isObject } from '.';
 import { pipe } from '../Function';
 
 const obj = { 1: 1, 2: 2, x: 'x', y: 'y', [Symbol()]: 'symbol' };
@@ -31,6 +31,28 @@ describe('shared.Object', () => {
     it('should return the value of the "1" property', () => {
       const result = pipe({ 1: 5 })._(get(1)).$();
       expect(result).toEqual(5);
+    });
+  });
+
+  describe('isObject', () => {
+    it('should return true if the input is an object', () => {
+      expect(isObject({ 1: 1, test: 'test' })).toEqual(true);
+    });
+
+    it('should return true if the input is an empty object', () => {
+      expect(isObject({})).toEqual(true);
+    });
+
+    it('should return false if the input is an array', () => {
+      expect(isObject([])).toEqual(false);
+    });
+
+    it('should return false if the input is a Map', () => {
+      expect(isObject(new Map())).toEqual(false);
+    });
+
+    it('should return false if the input is a Set', () => {
+      expect(isObject(new Set())).toEqual(false);
     });
   });
 });

@@ -13,6 +13,6 @@ export const max = (numbers: number[]) => Math.max(...numbers);
 
 export const min = (numbers: number[]) => Math.min(...numbers);
 
-export const multiply = (a: number[]) => a.reduce((a, b) => a * b);
+export const multiply = (a: number[]) => a.reduce((a, b) => a * b, 1);
 
-export const sum = (a: number[]) => a.reduce((a, b) => a + b);
+export const sum = (a: number[]) => a.reduce((a, b) => a + b, 0);
