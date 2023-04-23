@@ -1,6 +1,7 @@
-import { allTrue, anyTrue } from '.';
+import { allTrue, anyTrue, repeat } from '.';
+import { map } from '../Array';
 import { isOdd } from '../Number';
-import { isCapitalized, isLengthAtLeast } from '../String';
+import { isCapitalized, isLengthAtLeast, toUpperCase } from '../String';
 
 describe('shared.Function', () => {
   describe('anyPass', () => {
@@ -32,6 +33,22 @@ describe('shared.Function', () => {
       expect(['James', 'SaM', 'bob', 'Jo', 'A'].filter(isName)).toEqual([
         'James',
         'Jo',
+      ]);
+    });
+  });
+
+  describe('repeat', () => {
+    it('repeats the add1 function 100 times', () => {
+      const add1 = (x: number) => x + 1;
+      expect(repeat(100, add1)(0)).toBe(100);
+    });
+
+    it('repeats the add1 function 100 times for each number in the array', () => {
+      const doubleChars = map((x: string) => x + x);
+      expect(repeat(5, doubleChars)(['a', 'b', 'c'])).toStrictEqual([
+        'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+        'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+        'cccccccccccccccccccccccccccccccc',
       ]);
     });
   });
