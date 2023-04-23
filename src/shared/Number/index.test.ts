@@ -90,7 +90,7 @@ describe('shared.Number', () => {
 
   describe('min', () => {
     it('should return the smallest number in the array', () => {
-      expect(min([1, 2, 5, 4, 3])).toEqual(1);
+      expect(min([5, 2, 1, 4, 3])).toEqual(1);
     });
   });
 

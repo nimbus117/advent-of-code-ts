@@ -9,10 +9,10 @@ export const roundTo = (decimalPlaces: number) => (number: number) => {
   return Math.round(number * power) / power;
 };
 
-export const max = (numbers: number[]) => Math.max(...numbers);
+export const max = (arr: number[]) => arr.reduce((a, b) => (a > b ? a : b));
 
-export const min = (numbers: number[]) => Math.min(...numbers);
+export const min = (arr: number[]) => arr.reduce((a, b) => (a < b ? a : b));
 
-export const multiply = (a: number[]) => a.reduce((a, b) => a * b, 1);
+export const multiply = (arr: number[]) => arr.reduce((a, b) => a * b, 1);
 
-export const sum = (a: number[]) => a.reduce((a, b) => a + b, 0);
+export const sum = (arr: number[]) => arr.reduce((a, b) => a + b, 0);
