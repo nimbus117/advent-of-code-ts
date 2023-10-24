@@ -1,7 +1,7 @@
 import { allTrue, anyTrue, repeat } from '.';
 import { map } from '../Array';
 import { isOdd } from '../Number';
-import { isCapitalized, isLengthAtLeast, toUpperCase } from '../String';
+import { isCapitalized, isLengthAtLeast } from '../String';
 
 describe('shared.Function', () => {
   describe('anyPass', () => {
