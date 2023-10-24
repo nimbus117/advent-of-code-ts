@@ -1,11 +1,11 @@
-export const allLowerCase = (string: string) =>
+export const areAllLowerCase = (string: string) =>
   string.toLocaleLowerCase() === string;
 
-export const allUpperCase = (string: string) =>
+export const areAllUpperCase = (string: string) =>
   string.toLocaleUpperCase() === string;
 
 export const isCapitalized = (string: string) =>
-  allUpperCase(string.slice(0, 1)) && allLowerCase(string.slice(1));
+  areAllUpperCase(string.slice(0, 1)) && areAllLowerCase(string.slice(1));
 
 export const isLengthAtLeast = (length: number) => (string: string) =>
   string.length >= length;

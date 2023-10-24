@@ -17,6 +17,7 @@ describe('shared.BinarySearchTree', () => {
   describe('Tree', () => {
     it('should return the root node', () => {
       expect(basicTree.root).toBeInstanceOf(Node);
+      expect(basicTree.root?.value).toEqual(10);
     });
 
     it('should not add a duplicate value by default', () => {

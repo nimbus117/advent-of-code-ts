@@ -9,6 +9,8 @@ export const roundTo = (decimalPlaces: number) => (number: number) => {
   return Math.round(number * power) / power;
 };
 
+// arrays of numbers
+
 export const max = (arr: number[]) => arr.reduce((a, b) => (a > b ? a : b));
 
 export const min = (arr: number[]) => arr.reduce((a, b) => (a < b ? a : b));

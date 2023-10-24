@@ -1,4 +1,4 @@
-import { count, sum, multiply, isEven, isOdd, max, min, roundTo } from '.';
+import { count, isEven, isOdd, max, min, multiply, roundTo, sum } from '.';
 import { MapWithDefault } from '../Map';
 
 describe('shared.Number', () => {
