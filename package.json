@@ -7,7 +7,8 @@
     "start": "ts-node src/index.ts",
     "test": "jest",
     "test:coverage": "jest --collectCoverage",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +28,5 @@
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.2",
     "typescript": "^5.0.2"
-  },
-  "dependencies": {}
+  }
 }
