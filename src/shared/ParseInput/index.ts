@@ -3,8 +3,11 @@ export const parseLineOfCharacters = (input: string) => input.trim().split('');
 export const parseLineOfNumbers = (input: string) =>
   parseLineOfCharacters(input).map(Number);
 
+export const parseCommaSeparatedLine = (input: string) =>
+  input.trim().split(',');
+
 export const parseCommaSeparatedLineOfNumbers = (input: string) =>
-  input.trim().split(',').map(Number);
+  parseCommaSeparatedLine(input).map(Number);
 
 export const parseLinesOfStrings = (input: string) => input.trim().split('\n');
 
