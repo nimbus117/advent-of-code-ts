@@ -58,7 +58,7 @@ export const fromIterable = <T>(iterable: {
 export const sort =
   <T>(fn?: (a: T, b: T) => number) =>
   (array: T[]) =>
-    array.slice().sort(fn);
+    array.toSorted(fn);
 
 export const slice =
   <T>(start?: number, end?: number) =>
