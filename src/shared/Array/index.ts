@@ -77,6 +77,16 @@ export const find =
   (array: T[]) =>
     array.find(fn, thisArg);
 
+/* eslint-disable  @typescript-eslint/no-explicit-any*/
+export const groupBy =
+  <T, K extends keyof any>(key: (i: T) => K) =>
+  (array: T[]) =>
+    array.reduce((groups, item) => {
+      (groups[key(item)] ||= []).push(item);
+      return groups;
+    }, {} as Record<K, T[]>);
+/* eslint-enable  @typescript-eslint/no-explicit-any*/
+
 export const transpose = <T>(array: T[][]) =>
   array[0].map((_, i) => array.map((row) => row[i]));
 

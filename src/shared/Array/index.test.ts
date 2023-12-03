@@ -1,3 +1,6 @@
+import { pipe } from '../Function';
+import { MapWithDefault } from '../Map';
+import { isEven } from '../Number';
 import {
   all,
   any,
@@ -8,6 +11,7 @@ import {
   flat,
   flatMap,
   fromIterable,
+  groupBy,
   includes,
   join,
   last,
@@ -20,8 +24,6 @@ import {
   sort,
   transpose,
 } from '.';
-import { MapWithDefault } from '../Map';
-import { isEven } from '../Number';
 
 describe('shared.Array', () => {
   describe('transpose', () => {
@@ -308,6 +310,31 @@ describe('shared.Array', () => {
         [5, 4, 3],
         [2, 1],
       ]);
+    });
+  });
+
+  describe('groupBy', () => {
+    it('should group the people by age', () => {
+      const people = [
+        { name: 'Kevin R', age: 25 },
+        { name: 'Susan S', age: 18 },
+        { name: 'Julia J', age: 18 },
+        { name: 'Sarah C', age: 25 },
+      ];
+      const grouped = pipe(people)
+        ._(groupBy((i) => i.age))
+        .$();
+
+      expect(grouped).toEqual({
+        '18': [
+          { age: 18, name: 'Susan S' },
+          { age: 18, name: 'Julia J' },
+        ],
+        '25': [
+          { age: 25, name: 'Kevin R' },
+          { age: 25, name: 'Sarah C' },
+        ],
+      });
     });
   });
 });

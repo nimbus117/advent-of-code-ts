@@ -25,9 +25,9 @@ const parseGame = (game: string): Game => {
 };
 
 const isPossible = (x: Cubes) =>
-  Object.entries({ red: 12, green: 13, blue: 14 }).some(([k, v]) => x[k] > v);
+  !Object.entries({ red: 12, green: 13, blue: 14 }).some(([k, v]) => x[k] > v);
 
-const allPossible = (game: Game) => !game.cubes.some(isPossible);
+const allPossible = (game: Game) => game.cubes.every(isPossible);
 
 const getPower = (game: Game) => {
   const x = game.cubes.reduce((acc, cur) => {

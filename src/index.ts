@@ -13,7 +13,8 @@ else
       if (solution[part]) {
         const start = new Date().valueOf();
         const result = solution[part](input);
-        console.log(`${part}:`, result);
+        console.log(`${part}:`);
+        console.dir(result, { depth: null });
         const end = new Date().valueOf();
         console.log(`${end - start}ms\n`);
       } else {
