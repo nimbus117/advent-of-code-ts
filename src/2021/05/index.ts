@@ -42,16 +42,13 @@ const countIntersections = (lines: Line[]) => {
     ._(getIntersectionCounts(new MapWithDefault(0)))
     ._(fromIterable)
     ._(filter(([, v]) => v > 1))
-    ._(count)
-    .$();
+    ._(count).$;
 };
-
 export const part1 = (input: string) =>
   pipe(input)
     ._(parseLines)
     ._(filter(isHorizontalOrVertical))
-    ._(countIntersections)
-    .$();
+    ._(countIntersections).$;
 
 export const part2 = (input: string) =>
-  pipe(input)._(parseLines)._(countIntersections).$();
+  pipe(input)._(parseLines)._(countIntersections).$;

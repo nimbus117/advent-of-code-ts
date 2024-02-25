@@ -32,8 +32,7 @@ const solution = (input: string, part: 'p1' | 'p2') =>
     ._(parseLinesOfStrings)
     ._(map(countChars))
     ._(reduce(getCounts))
-    ._(get(part))
-    .$();
+    ._(get(part)).$;
 
 export const part1 = (input: string) => solution(input, 'p1');
 

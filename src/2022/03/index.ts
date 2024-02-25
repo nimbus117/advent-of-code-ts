@@ -7,8 +7,7 @@ import { indexOf, areAllUpperCase, slice, split } from '@shared/String';
 const getPriority = (char: string) =>
   pipe('abcdefghijklmnopqrstuvwxyz')
     ._(indexOf(char.toLowerCase()))
-    ._((x) => (areAllUpperCase(char) ? x + 27 : x + 1))
-    .$();
+    ._((x) => (areAllUpperCase(char) ? x + 27 : x + 1)).$;
 
 const findError = (bag: string) =>
   pipe(bag)
@@ -16,8 +15,7 @@ const findError = (bag: string) =>
     ._(split(''))
     ._(filter((x: string) => bag.slice(bag.length / 2).includes(x)))
     ._(first)
-    ._(getPriority)
-    .$();
+    ._(getPriority).$;
 
 const findBadge = (bags: string[][]) =>
   getPriority(
@@ -25,7 +23,7 @@ const findBadge = (bags: string[][]) =>
   );
 
 export const part1 = (input: string) =>
-  pipe(input)._(parseLinesOfStrings)._(map(findError))._(sum).$();
+  pipe(input)._(parseLinesOfStrings)._(map(findError))._(sum).$;
 
 export const part2 = (input: string) =>
   pipe(input)
@@ -33,5 +31,4 @@ export const part2 = (input: string) =>
     ._(map(split('')))
     ._(chunk(3))
     ._(map(findBadge))
-    ._(sum)
-    .$();
+    ._(sum).$;

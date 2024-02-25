@@ -39,8 +39,7 @@ const solve = (input: string, includeMe = false) => {
   const happinessMap = pipe(input)
     ._(parseLinesOfStrings)
     ._(map(split(' ')))
-    ._(reduceI(setHappiness, new MapWithDefault(new MapWithDefault(0))))
-    .$();
+    ._(reduceI(setHappiness, new MapWithDefault(new MapWithDefault(0)))).$;
 
   const names = [...happinessMap.keys()];
   if (includeMe) names.push('me');

@@ -24,7 +24,7 @@ const findNounVerb = (input: number[]) => {
 };
 
 export const part1 = (input: string) =>
-  pipe(input)._(parseCommaSeparatedLineOfNumbers)._(runProgram)._(first).$();
+  pipe(input)._(parseCommaSeparatedLineOfNumbers)._(runProgram)._(first).$;
 
 export const part2 = (input: string) =>
-  pipe(input)._(parseCommaSeparatedLineOfNumbers)._(findNounVerb).$();
+  pipe(input)._(parseCommaSeparatedLineOfNumbers)._(findNounVerb).$;

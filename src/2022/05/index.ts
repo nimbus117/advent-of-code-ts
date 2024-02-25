@@ -31,8 +31,8 @@ const parseStacks = reduceI<string, Stacks>((stacks, line) => {
 
 const parse = (input: string): StackProc => {
   const [s, p] = input.split('\n\n');
-  const stacks = pipe(s)._(split('\n'))._(parseStacks).$();
-  const procedure = pipe(p)._(parseLinesOfStrings)._(parseProcedure).$();
+  const stacks = pipe(s)._(split('\n'))._(parseStacks).$;
+  const procedure = pipe(p)._(parseLinesOfStrings)._(parseProcedure).$;
   return { stacks, procedure };
 };
 
@@ -54,10 +54,10 @@ const moveCrates2 = ({ stacks, procedure }: StackProc): Stacks =>
   }, stacks.slice());
 
 const getTopCrates = (stacks: Stacks) =>
-  pipe(stacks)._(map(first))._(join('')).$();
+  pipe(stacks)._(map(first))._(join('')).$;
 
 export const part1 = (input: string) =>
-  pipe(input)._(parse)._(moveCrates1)._(getTopCrates).$();
+  pipe(input)._(parse)._(moveCrates1)._(getTopCrates).$;
 
 export const part2 = (input: string) =>
-  pipe(input)._(parse)._(moveCrates2)._(getTopCrates).$();
+  pipe(input)._(parse)._(moveCrates2)._(getTopCrates).$;

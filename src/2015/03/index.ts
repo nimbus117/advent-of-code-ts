@@ -49,7 +49,7 @@ const visitHouses2 = reduceI<string, Result2>(
 );
 
 const getVisitedCount = (i: string, visit: (i: string[]) => Result) =>
-  pipe(i)._(parseLineOfCharacters)._(visit)._(get('visited'))._(count).$();
+  pipe(i)._(parseLineOfCharacters)._(visit)._(get('visited'))._(count).$;
 
 export const part1 = (input: string) => getVisitedCount(input, visitHouses1);
 

@@ -45,13 +45,8 @@ export const part1 = (input: string) =>
     ._(map(parseGame))
     ._(filter(allPossible))
     ._(map(get('gameId')))
-    ._(sum)
-    .$();
+    ._(sum).$;
 
 export const part2 = (input: string) =>
-  pipe(input)
-    ._(parseLinesOfStrings)
-    ._(map(parseGame))
-    ._(map(getPower))
-    ._(sum)
-    .$();
+  pipe(input)._(parseLinesOfStrings)._(map(parseGame))._(map(getPower))._(sum)
+    .$;

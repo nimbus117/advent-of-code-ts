@@ -14,7 +14,7 @@ const getBasementPosition = (instructions: string[]) => {
 };
 
 export const part1 = (input: string) =>
-  pipe(input)._(parseLineOfCharacters)._(map(instructionToInt))._(sum).$();
+  pipe(input)._(parseLineOfCharacters)._(map(instructionToInt))._(sum).$;
 
 export const part2 = (input: string) =>
-  pipe(input)._(parseLineOfCharacters)._(getBasementPosition).$();
+  pipe(input)._(parseLineOfCharacters)._(getBasementPosition).$;

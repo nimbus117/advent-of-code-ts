@@ -1,5 +1,6 @@
-import { last, map, sort } from '@shared/Array';
+import { last, map } from '@shared/Array';
 import { pipe, repeat } from '@shared/Function';
+import { max } from '@shared/Number';
 import { get } from '@shared/Object';
 import { parseLinesOfStrings } from '@shared/ParseInput';
 
@@ -33,15 +34,13 @@ const updateReindeers = (reindeers: ReturnType<typeof parseReindeer>[]) => {
   );
 };
 
-export const race = (input: string, winBy: 'score' | 'distance') =>
+const race = (input: string, winBy: 'score' | 'distance') =>
   pipe(input)
     ._(parseLinesOfStrings)
     ._(map(parseReindeer))
     ._(repeat(2503, updateReindeers))
     ._(map(get(winBy)))
-    ._(sort((a, b) => a - b))
-    ._(last)
-    .$();
+    ._(max).$;
 
 export const part1 = (input: string) => race(input, 'distance');
 

@@ -21,15 +21,9 @@ const calculateGrowth = (days: number) => (fish: number[]) => {
 };
 
 export const part1 = (input: string) =>
-  pipe(input)
-    ._(parseCommaSeparatedLineOfNumbers)
-    ._(simulateGrowth(80))
-    ._(count)
-    .$();
+  pipe(input)._(parseCommaSeparatedLineOfNumbers)._(simulateGrowth(80))._(count)
+    .$;
 
 export const part2 = (input: string) =>
-  pipe(input)
-    ._(parseCommaSeparatedLineOfNumbers)
-    ._(calculateGrowth(256))
-    ._(sum)
-    .$();
+  pipe(input)._(parseCommaSeparatedLineOfNumbers)._(calculateGrowth(256))._(sum)
+    .$;

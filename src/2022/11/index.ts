@@ -14,7 +14,7 @@ class Monkey {
   target2: number;
 
   constructor(input: string) {
-    const lines = pipe(input)._(parseLinesOfStrings)._(map(trim)).$();
+    const lines = pipe(input)._(parseLinesOfStrings)._(map(trim)).$;
     this.items = lines[1].split(': ')[1].split(', ').map(Number);
     this.inspected = 0;
     this.operation = lines[2][21];
@@ -60,8 +60,7 @@ class Game {
       ._(map((x) => x.inspected))
       ._(sort((a, b) => a - b))
       ._(slice(-2))
-      ._(multiply)
-      .$();
+      ._(multiply).$;
 }
 
 export const part1 = (input: string) =>

@@ -43,8 +43,7 @@ const run = (input: string, fn: (i: Command[]) => Position) =>
     ._(parseLinesOfStrings)
     ._(mapToCommand)
     ._(fn)
-    ._((p) => p.x * p.y)
-    .$();
+    ._((p) => p.x * p.y).$;
 
 export const part1 = (input: string) => run(input, getFinalPosition);
 

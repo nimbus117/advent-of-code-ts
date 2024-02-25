@@ -20,14 +20,13 @@ const getRequiredRibbon = reduceI((total, present: string) => {
     ._(sort((a, b) => a - b))
     ._(slice(0, 2))
     ._(map((x) => x + x))
-    ._(sum)
-    .$();
+    ._(sum).$;
 
   return total + wrapRibbon + bowRibbon;
 }, 0);
 
 export const part1 = (input: string) =>
-  pipe(input)._(parseLinesOfStrings)._(getRequiredPaper).$();
+  pipe(input)._(parseLinesOfStrings)._(getRequiredPaper).$;
 
 export const part2 = (input: string) =>
-  pipe(input)._(parseLinesOfStrings)._(getRequiredRibbon).$();
+  pipe(input)._(parseLinesOfStrings)._(getRequiredRibbon).$;

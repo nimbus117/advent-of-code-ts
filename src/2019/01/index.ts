@@ -11,7 +11,7 @@ const calculateTotalFuel = (mass: number): number => {
 };
 
 export const part1 = (input: string) =>
-  pipe(input)._(parseLinesOfNumbers)._(map(calculateFuel))._(sum).$();
+  pipe(input)._(parseLinesOfNumbers)._(map(calculateFuel))._(sum).$;
 
 export const part2 = (input: string) =>
-  pipe(input)._(parseLinesOfNumbers)._(map(calculateTotalFuel))._(sum).$();
+  pipe(input)._(parseLinesOfNumbers)._(map(calculateTotalFuel))._(sum).$;

@@ -50,11 +50,11 @@ const getCompletionScores = map((line: string) => {
 
   const getScore = reduceI((acc, cur: string) => acc * 5 + p2Score.get(cur), 0);
 
-  return pipe(openingChars)._(reverse)._(getScore).$();
+  return pipe(openingChars)._(reverse)._(getScore).$;
 });
 
 export const part1 = (input: string) =>
-  pipe(input)._(parseLinesOfStrings)._(getTotalSyntaxErrorScore).$();
+  pipe(input)._(parseLinesOfStrings)._(getTotalSyntaxErrorScore).$;
 
 export const part2 = (input: string) =>
   pipe(input)
@@ -62,5 +62,4 @@ export const part2 = (input: string) =>
     ._(getCompletionScores)
     ._(filter((x) => x > 0))
     ._(sort((a, b) => a - b))
-    ._((scores) => scores[Math.floor(scores.length / 2)])
-    .$();
+    ._((scores) => scores[Math.floor(scores.length / 2)]).$;

@@ -45,5 +45,4 @@ export const part1 = (input: string) =>
     ._(parseLinesOfStrings)
     ._(getDirTree)
     ._((x) => x.directory)
-    .__((x) => console.dir(x, { depth: 3 }))
-    .$();
+    .__((x) => console.dir(x, { depth: 3 })).$;

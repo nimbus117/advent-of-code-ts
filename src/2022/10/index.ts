@@ -34,11 +34,10 @@ const screen: OnCycle<string> = ({ X, cycle, out }) => {
 };
 
 export const part1 = (input: string) =>
-  pipe(input)._(process(signalStrength))._(sum).$();
+  pipe(input)._(process(signalStrength))._(sum).$;
 
 export const part2 = (input: string) =>
   pipe(input)
     ._(process(screen))
     ._(chunk(40))
-    ._(map(join('')))
-    .$();
+    ._(map(join(''))).$;

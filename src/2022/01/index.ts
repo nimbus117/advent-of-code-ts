@@ -7,7 +7,7 @@ import { split } from '@shared/String';
 const sumCalories = (input: string) => sum(parseLinesOfNumbers(input));
 
 export const part1 = (input: string) =>
-  pipe(input)._(split('\n\n'))._(map(sumCalories))._(max).$();
+  pipe(input)._(split('\n\n'))._(map(sumCalories))._(max).$;
 
 export const part2 = (input: string) =>
   pipe(input)
@@ -15,5 +15,4 @@ export const part2 = (input: string) =>
     ._(map(sumCalories))
     ._(sort((a, b) => a - b))
     ._(slice(-3))
-    ._(sum)
-    .$();
+    ._(sum).$;

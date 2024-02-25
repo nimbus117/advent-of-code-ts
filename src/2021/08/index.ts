@@ -20,7 +20,7 @@ const sortByLength = sort((a: string, b: string) => a.length - b.length);
 
 const mapOutput = map(
   ({ patterns, output }: { patterns: string[]; output: string[] }) => {
-    const known = pipe(patterns)._(filterUnique)._(sortByLength).$();
+    const known = pipe(patterns)._(filterUnique)._(sortByLength).$;
     const [one, seven, four, eight] = known;
 
     const filterKnown = filter((x: string) => !known.includes(x));
@@ -28,26 +28,23 @@ const mapOutput = map(
     const filterIncludes = (a: string) =>
       patterns.filter((x) => hasSegments(a, x));
 
-    const [nine] = pipe(four)._(filterIncludes)._(filterKnown).$();
+    const [nine] = pipe(four)._(filterIncludes)._(filterKnown).$;
     known.push(nine);
 
     const [three, zero] = pipe(one)
       ._(filterIncludes)
       ._(filterKnown)
-      ._(sortByLength)
-      .$();
+      ._(sortByLength).$;
     known.push(three, zero);
 
     const [six] = pipe(patterns)
       ._(filter((x) => x.length === 6))
-      ._(filterKnown)
-      .$();
+      ._(filterKnown).$;
     known.push(six);
 
     const [five] = pipe(patterns)
       ._(filter((x) => hasSegments(x, six)))
-      ._(filterKnown)
-      .$();
+      ._(filterKnown).$;
     known.push(five);
 
     const [two] = filterKnown(patterns);
@@ -63,8 +60,7 @@ export const part1 = (input: string) =>
   pipe(input)
     ._(parse)
     ._(map((line) => filterUnique(line.output).length))
-    ._(sum)
-    .$();
+    ._(sum).$;
 
 export const part2 = (input: string) =>
-  pipe(input)._(parse)._(mapOutput)._(sum).$();
+  pipe(input)._(parse)._(mapOutput)._(sum).$;

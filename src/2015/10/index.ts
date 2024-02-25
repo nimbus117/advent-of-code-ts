@@ -14,10 +14,8 @@ const cycle = (input: string) => {
     ._(parseLineOfCharacters)
     ._(reduceI(lookAndSay, []))
     ._(map((x) => `${x.count}${x.digit}`))
-    ._(join(''))
-    .$();
+    ._(join('')).$;
 };
-
 export const part1 = (input: string) => repeat(40, cycle)(input).length;
 
 export const part2 = (input: string) => repeat(50, cycle)(input).length;

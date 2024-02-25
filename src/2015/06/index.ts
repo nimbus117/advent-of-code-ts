@@ -45,8 +45,7 @@ const getTotal = (input: string, getNewValue: GetNewValue) =>
     ._(map(parseInstruction))
     ._(setupLights(getNewValue))
     ._(flat())
-    ._(sum)
-    .$();
+    ._(sum).$;
 
 export const part1 = (input: string) => getTotal(input, getNewValue1);
 

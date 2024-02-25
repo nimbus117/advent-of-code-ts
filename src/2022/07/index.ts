@@ -30,13 +30,11 @@ export const part1 = (input: string) =>
   pipe(input)
     ._(getFolderSizes)
     ._(filter((x) => x <= 100000))
-    ._(sum)
-    .$();
+    ._(sum).$;
 
 export const part2 = (input: string) =>
   pipe(input)
     ._(getFolderSizes)
     ._(sort((a, b) => a - b))
     ._(filter((x, _, a) => x > 30000000 - (70000000 - last(a))))
-    ._(first)
-    .$();
+    ._(first).$;

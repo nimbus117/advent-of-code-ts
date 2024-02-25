@@ -30,7 +30,7 @@ const getGameScores2 = map((game: string) => {
 });
 
 export const part1 = (input: string) =>
-  pipe(input)._(parseLinesOfStrings)._(getGameScores1)._(sum).$();
+  pipe(input)._(parseLinesOfStrings)._(getGameScores1)._(sum).$;
 
 export const part2 = (input: string) =>
-  pipe(input)._(parseLinesOfStrings)._(getGameScores2)._(sum).$();
+  pipe(input)._(parseLinesOfStrings)._(getGameScores2)._(sum).$;

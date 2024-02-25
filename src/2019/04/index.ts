@@ -26,8 +26,7 @@ const buildValidator = (validators: Predicate<number[]>[]) => (input: string) =>
     ._(getPasswordRange)
     ._(map(toDigitArray))
     ._(filter(allTrue(validators)))
-    ._(count)
-    .$();
+    ._(count).$;
 
 export const part1 = buildValidator([hasNoDecreasing, hasAtLeast2Adjacent]);
 

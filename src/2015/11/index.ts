@@ -34,6 +34,6 @@ const run = (password: number[]) => {
 };
 
 export const part1 = (input: string) =>
-  pipe(input)._(parseLineOfCharacters)._(map(charToNumber))._(run).$();
+  pipe(input)._(parseLineOfCharacters)._(map(charToNumber))._(run).$;
 
 export const part2 = (input: string) => part1(part1(input));

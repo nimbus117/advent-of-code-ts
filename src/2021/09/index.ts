@@ -21,12 +21,10 @@ const getRiskLevels = flatMap((y: number[], yI: number, yA: number[][]) => {
 
   return pipe(y)
     ._(filter(isLowpoint))
-    ._(map((x) => x + 1))
-    .$();
+    ._(map((x) => x + 1)).$;
 });
-
 export const part1 = (input: string) =>
-  pipe(input)._(parseArraysOfNumbers)._(getRiskLevels)._(sum).$();
+  pipe(input)._(parseArraysOfNumbers)._(getRiskLevels)._(sum).$;
 
 export const part2 = (input: string) => {
   const heightMap = parseArraysOfNumbers(input);

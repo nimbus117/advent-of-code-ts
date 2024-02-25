@@ -11,8 +11,7 @@ describe('shared.Function', () => {
         ._(map(Number))
         ._(sum)
         ._(add2)
-        ._(isEven)
-        .$();
+        ._(isEven).$;
 
       expect(result).toEqual(true);
     });
@@ -26,8 +25,7 @@ describe('shared.Function', () => {
         ._(sum)
         ._(add2)
         .__(sideEffect)
-        ._(isEven)
-        .$();
+        ._(isEven).$;
 
       expect(value).toEqual(30);
       expect(result).toEqual(true);
@@ -36,7 +34,7 @@ describe('shared.Function', () => {
     it('should log out the current value in the pipeline when using the log method', () => {
       const logSpy = jest.spyOn(global.console, 'log');
 
-      const result = pipe(1)._(add2).log()._(add2).$();
+      const result = pipe(1)._(add2).log()._(add2).$;
 
       expect(logSpy.mock.calls).toContainEqual([3]);
       expect(result).toEqual(5);
@@ -50,8 +48,7 @@ describe('shared.Function', () => {
       const result = pipe(1)
         ._(add2)
         .log((x) => ({ label: x }))
-        ._(add2)
-        .$();
+        ._(add2).$;
 
       expect(logSpy.mock.calls).toContainEqual([{ label: 3 }]);
       expect(result).toEqual(5);

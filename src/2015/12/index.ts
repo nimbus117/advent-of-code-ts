@@ -1,17 +1,16 @@
 import { map } from '@shared/Array';
 import { pipe } from '@shared/Function';
 import { sum } from '@shared/Number';
-import { isObject } from '@shared/Object';
+import { isObj } from '@shared/Object';
 
 export const part1 = (input: string) =>
   pipe(input)
     ._((str) => str.match(/-?[0-9]+/g) ?? [])
     ._(map(Number))
-    ._(sum)
-    .$();
+    ._(sum).$;
 
 const countExlcudingRed = (obj: unknown, numbers: number[] = []) => {
-  if (isObject(obj)) {
+  if (isObj(obj)) {
     const values = Object.values(obj);
     if (values.every((v) => v !== 'red'))
       values.forEach((v) => countExlcudingRed(v, numbers));
@@ -23,4 +22,4 @@ const countExlcudingRed = (obj: unknown, numbers: number[] = []) => {
 };
 
 export const part2 = (input: string) =>
-  pipe(input)._(JSON.parse)._(countExlcudingRed)._(sum).$();
+  pipe(input)._(JSON.parse)._(countExlcudingRed)._(sum).$;

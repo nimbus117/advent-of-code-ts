@@ -10,7 +10,7 @@ const getGammaBits = (input: number[][]) => {
 
   const toGamaBit = (x: number) => (x > input.length / 2 ? 1 : 0);
 
-  return pipe(input)._(countSetBits)._(map(toGamaBit)).$();
+  return pipe(input)._(countSetBits)._(map(toGamaBit)).$;
 };
 
 const flipBit = (bit: number) => 1 - bit;
@@ -35,7 +35,7 @@ const getRating = (
 };
 
 export const part1 = (input: string) => {
-  const gamma = pipe(input)._(parseArraysOfNumbers)._(getGammaBits).$();
+  const gamma = pipe(input)._(parseArraysOfNumbers)._(getGammaBits).$;
   const epsilon = gamma.map(flipBit);
   return bitsToInt(gamma) * bitsToInt(epsilon);
 };

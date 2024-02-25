@@ -321,9 +321,8 @@ describe('shared.Array', () => {
         { name: 'Julia J', age: 18 },
         { name: 'Sarah C', age: 25 },
       ];
-      const grouped = pipe(people)
-        ._(groupBy((i) => i.age))
-        .$();
+
+      const grouped = pipe(people)._(groupBy((i) => i.age)).$;
 
       expect(grouped).toEqual({
         '18': [

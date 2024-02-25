@@ -30,12 +30,11 @@ const replaceWords = (input: string) => {
 };
 
 export const part1 = (input: string) =>
-  pipe(input)._(parseLinesOfStrings)._(map(getValue))._(sum).$();
+  pipe(input)._(parseLinesOfStrings)._(map(getValue))._(sum).$;
 
 export const part2 = (input: string) =>
   pipe(input)
     ._(parseLinesOfStrings)
     ._(map(replaceWords))
     ._(map(getValue))
-    ._(sum)
-    .$();
+    ._(sum).$;
