@@ -1,47 +1,24 @@
-import { pipe } from '../Function';
-
-type Obj = Record<string | number, unknown>;
-type ObjEntry = [string, unknown];
-type ObjEntries = ObjEntry[];
-type ObjKey<T> = Exclude<keyof T, symbol>;
-type Mode = 'omit' | 'pick';
-
-const createEntriesFilter =
-  (keys: (string | number)[], mode: Mode) => (entries: ObjEntries) => {
-    const _keys = keys.map(String);
-    return entries.filter(
-      mode === 'omit'
-        ? ([key]) => !_keys.includes(key)
-        : ([key]) => _keys.includes(key)
-    );
-  };
+export type Obj = Record<PropertyKey, unknown>;
 
 export const pick =
-  <T extends Obj, K extends ObjKey<T>>(keys: K[]) =>
-  (object: T): Pick<T, K> =>
-    pipe(object)
-      ._(Object.entries)
-      ._(createEntriesFilter(keys, 'pick'))
-      ._(Object.fromEntries)
-      .$();
+  <T extends Obj, K extends keyof T>(pickKeys: K[]) =>
+  <O extends Pick<T, K>>(object: T): O =>
+    pickKeys.reduce((acc, cur) => ({ ...acc, [cur]: object[cur] }), {} as O);
 
 export const omit =
-  <T extends Obj, K extends ObjKey<T>>(keys: K[]) =>
-  (object: T): Omit<T, K> =>
-    pipe(object)
-      ._(Object.entries)
-      ._(createEntriesFilter(keys, 'omit'))
-      ._(Object.fromEntries)
-      .$();
+  <T extends Obj, K extends keyof T>(omitKeys: K[]) =>
+  (object: T): Omit<T, K> => {
+    const _object = { ...object };
+    omitKeys.forEach((key) => delete _object[key]);
+    return _object;
+  };
 
 export const get =
-  <T extends Obj, K extends ObjKey<T>>(key: K) =>
+  <T extends Obj, K extends keyof T>(key: K) =>
   (object: T) =>
     object[key];
 
-export const isObject = (
-  input: unknown
-): input is Record<string | number | symbol, unknown> =>
+export const isObj = (input: unknown): input is Obj =>
   typeof input === 'object' &&
   input !== null &&
   !Array.isArray(input) &&

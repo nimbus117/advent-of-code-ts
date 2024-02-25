@@ -1,3 +1,5 @@
+import { Obj } from '../Object';
+
 export const first = <T>(array: T[]) => array[0];
 
 export const last = <T>(array: T[]) => array[array.length - 1];
@@ -77,15 +79,13 @@ export const find =
   (array: T[]) =>
     array.find(fn, thisArg);
 
-/* eslint-disable  @typescript-eslint/no-explicit-any*/
 export const groupBy =
-  <T, K extends keyof any>(key: (i: T) => K) =>
-  (array: T[]) =>
+  <T, K extends keyof Obj>(key: (i: T) => K) =>
+  (array: T[]): Record<K, T[]> =>
     array.reduce((groups, item) => {
       (groups[key(item)] ||= []).push(item);
       return groups;
     }, {} as Record<K, T[]>);
-/* eslint-enable  @typescript-eslint/no-explicit-any*/
 
 export const transpose = <T>(array: T[][]) =>
   array[0].map((_, i) => array.map((row) => row[i]));
