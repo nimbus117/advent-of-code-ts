@@ -1,5 +1,16 @@
-export { pipe } from './pipe';
-export { allTrue, anyTrue, Predicate } from './Predicates';
+export { pipe, Pipe } from './pipe';
+
+export type Predicate<T> = (input: T) => boolean;
+
+export const allTrue =
+  <T>(predicates: Predicate<T>[]) =>
+  (input: T) =>
+    predicates.every((predicate) => predicate(input));
+
+export const anyTrue =
+  <T>(predicates: Predicate<T>[]) =>
+  (input: T) =>
+    predicates.some((predicate) => predicate(input));
 
 export const repeat =
   <T>(times: number, fn: (input: T) => T) =>
