@@ -59,6 +59,10 @@ describe('shared.Object', () => {
     });
 
     it('should return false if the input is an array', () => {
+      expect(isObj([1, 2, 3])).toEqual(false);
+    });
+
+    it('should return false if the input is an empty array', () => {
       expect(isObj([])).toEqual(false);
     });
 
@@ -80,6 +84,23 @@ describe('shared.Object', () => {
 
     it('should return false if the input is a symbol', () => {
       expect(isObj(Symbol())).toEqual(false);
+    });
+
+    it('should return false if the input is a function', () => {
+      expect(isObj(() => null)).toEqual(false);
+    });
+
+    it('should return false if the input is a boolean', () => {
+      expect(isObj(true)).toEqual(false);
+      expect(isObj(false)).toEqual(false);
+    });
+
+    it('should return false if the input is null', () => {
+      expect(isObj(null)).toEqual(false);
+    });
+
+    it('should return false if the input is undefined', () => {
+      expect(isObj(undefined)).toEqual(false);
     });
   });
 });

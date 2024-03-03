@@ -19,7 +19,10 @@ describe('shared.Function', () => {
     it('should call the sideEffect function without effecting the pipeline', () => {
       let value = 0;
 
-      const sideEffect = (num: number) => (value = num);
+      const sideEffect = (num: number) => {
+        num++;
+        value = num;
+      };
 
       const result = pipe([1, 2, 3, 4, 5, 6, 7])
         ._(sum)
@@ -27,7 +30,7 @@ describe('shared.Function', () => {
         .__(sideEffect)
         ._(isEven).$;
 
-      expect(value).toEqual(30);
+      expect(value).toEqual(31);
       expect(result).toEqual(true);
     });
 

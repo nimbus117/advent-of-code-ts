@@ -20,7 +20,7 @@ export const get =
 
 export const isObj = (input: unknown): input is Obj =>
   typeof input === 'object' &&
-  input !== null &&
+  !!input &&
   !Array.isArray(input) &&
   !(input instanceof Map) &&
   !(input instanceof Set);
