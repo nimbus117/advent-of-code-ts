@@ -11,6 +11,7 @@ describe('shared.Object', () => {
       const result = pipe(obj)._(omit(['x', 2])).$;
       expect(result).toEqual({ 1: 1, y: 'y', [sy]: 'symbol' });
     });
+
     it('should omit the symbol', () => {
       const result = pipe(obj)._(omit([sy])).$;
       expect(result).toEqual({ '1': 1, '2': 2, x: 'x', y: 'y' });
@@ -30,7 +31,7 @@ describe('shared.Object', () => {
   });
 
   describe('get', () => {
-    it('should return the value of the "test" property', () => {
+    it('should return the value of the "x" property', () => {
       const result = pipe(obj)._(get('x')).$;
       expect(result).toEqual('x');
     });

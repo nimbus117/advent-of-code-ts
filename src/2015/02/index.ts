@@ -1,15 +1,15 @@
 import { map, reduceI, slice, sort } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { multiply, sum } from '@shared/Number';
+import { min, multiply, sum } from '@shared/Number';
 import { parseLinesOfStrings } from '@shared/ParseInput';
 
 const getDimensions = (present: string) => present.split('x').map(Number);
 
 const getRequiredPaper = reduceI((total, present: string) => {
   const [l, w, h] = getDimensions(present);
-  const [lw, wh, hl] = [l * w, w * h, h * l];
-  const smallest = Math.min(lw, wh, hl);
-  return total + sum([lw * 2, wh * 2, hl * 2, smallest]);
+  const sides = [l * w, w * h, h * l];
+  const smallest = min(sides);
+  return total + sum(sides) * 2 + smallest;
 }, 0);
 
 const getRequiredRibbon = reduceI((total, present: string) => {

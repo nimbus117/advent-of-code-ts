@@ -2,12 +2,12 @@ import { chunk, filter, first, map } from '@shared/Array';
 import { pipe } from '@shared/Function';
 import { sum } from '@shared/Number';
 import { parseLinesOfStrings } from '@shared/ParseInput';
-import { indexOf, areAllUpperCase, slice, split } from '@shared/String';
+import { indexOf, isAllUpperCase, slice, split } from '@shared/String';
 
 const getPriority = (char: string) =>
   pipe('abcdefghijklmnopqrstuvwxyz')
     ._(indexOf(char.toLowerCase()))
-    ._((x) => (areAllUpperCase(char) ? x + 27 : x + 1)).$;
+    ._((x) => (isAllUpperCase(char) ? x + 27 : x + 1)).$;
 
 const findError = (bag: string) =>
   pipe(bag)

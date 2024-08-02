@@ -1,16 +1,19 @@
 export type Obj = Record<PropertyKey, unknown>;
 
 export const pick =
-  <T extends Obj, K extends keyof T>(pickKeys: K[]) =>
+  <T extends Obj, K extends keyof T>(keys: K[]) =>
   <O extends Pick<T, K>>(object: T): O =>
-    pickKeys.reduce((acc, cur) => ({ ...acc, [cur]: object[cur] }), {} as O);
+    keys.reduce(
+      (newObject, key) => ({ ...newObject, [key]: object[key] }),
+      {} as O
+    );
 
 export const omit =
-  <T extends Obj, K extends keyof T>(omitKeys: K[]) =>
+  <T extends Obj, K extends keyof T>(keys: K[]) =>
   (object: T): Omit<T, K> => {
-    const _object = { ...object };
-    omitKeys.forEach((key) => delete _object[key]);
-    return _object;
+    const newObject = { ...object };
+    keys.forEach((key) => delete newObject[key]);
+    return newObject;
   };
 
 export const get =

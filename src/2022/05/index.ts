@@ -12,11 +12,8 @@ const parseProcedure = map<string, Procedure>((proc) => {
     new RegExp(/^move ([\d]*) from ([\d]) to ([\d])$/)
   );
   /* istanbul ignore next */
-  return {
-    count: parseInt((matches ?? '0')[1]),
-    from: parseInt((matches ?? '0')[2]) - 1,
-    to: parseInt((matches ?? '0')[3]) - 1,
-  };
+  const get = (i: number) => parseInt((matches ?? '0')[i]);
+  return { count: get(1), from: get(2) - 1, to: get(3) - 1 };
 });
 
 const parseStacks = reduceI<string, Stacks>((stacks, line) => {

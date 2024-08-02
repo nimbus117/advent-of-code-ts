@@ -16,6 +16,7 @@ const cycle = (input: string) => {
     ._(map((x) => `${x.count}${x.digit}`))
     ._(join('')).$;
 };
+
 export const part1 = (input: string) => repeat(40, cycle)(input).length;
 
 export const part2 = (input: string) => repeat(50, cycle)(input).length;

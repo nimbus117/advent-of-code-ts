@@ -1,17 +1,17 @@
-export * as A from './Array';
+export * as Array from './Array';
 
 export * as BST from './BinarySearchTree';
 
-export * as F from './Function';
+export * as Function from './Function';
 
 export * as MAP from './Map';
 
-export * as N from './Number';
+export * as Number from './Number';
 
-export * as O from './Object';
+export * as Object from './Object';
 
-export * as P from './ParseInput';
+export * as Parse from './ParseInput';
 
-export * as S from './String';
+export * as String from './String';
 
-export * as T from './Types';
+export * as Types from './Types';

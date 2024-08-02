@@ -1,4 +1,4 @@
-import { flatMap, range } from '@shared/Array';
+import { range } from '@shared/Array';
 import { pipe } from '@shared/Function';
 import { count, sum } from '@shared/Number';
 import { parseCommaSeparatedLineOfNumbers } from '@shared/ParseInput';
@@ -6,7 +6,7 @@ import { parseCommaSeparatedLineOfNumbers } from '@shared/ParseInput';
 const simulateGrowth =
   (days: number) =>
   (fish: number[]): number[] => {
-    const growth = flatMap((f: number) => (f > 0 ? f - 1 : [6, 8]))(fish);
+    const growth = fish.flatMap((f: number) => (f > 0 ? f - 1 : [6, 8]));
     return days > 1 ? simulateGrowth(days - 1)(growth) : growth;
   };
 

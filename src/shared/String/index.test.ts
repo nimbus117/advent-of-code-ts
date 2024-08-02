@@ -1,9 +1,8 @@
 import {
   indexOf,
-  isCapitalized,
   isLengthAtLeast,
-  areAllLowerCase,
-  areAllUpperCase,
+  isAllLowerCase,
+  isAllUpperCase,
   slice,
   split,
   toLowerCase,
@@ -14,37 +13,23 @@ import {
 } from '.';
 
 describe('shared.String', () => {
-  describe('isCapitalized', () => {
-    it('returns true when only the first character in the string is capitalized', () => {
-      expect(isCapitalized('Bob')).toBe(true);
-    });
-
-    it('returns false when the first character in the string is NOT capitalized', () => {
-      expect(isCapitalized('bob')).toBe(false);
-    });
-
-    it('returns false when the first character in the string is not the only capitalized letter', () => {
-      expect(isCapitalized('BoB')).toBe(false);
-    });
-  });
-
   describe('allLowerCase', () => {
     it('returns true when all letters are lower case', () => {
-      expect(areAllLowerCase('bob')).toBe(true);
+      expect(isAllLowerCase('bob')).toBe(true);
     });
 
     it('returns false if any letter is NOT lower case', () => {
-      expect(areAllLowerCase('bOb')).toBe(false);
+      expect(isAllLowerCase('bOb')).toBe(false);
     });
   });
 
   describe('allUpperCase', () => {
     it('returns true when all letters are upper case', () => {
-      expect(areAllUpperCase('BOB')).toBe(true);
+      expect(isAllUpperCase('BOB')).toBe(true);
     });
 
     it('returns false if any letter is NOT upper case', () => {
-      expect(areAllUpperCase('BoB')).toBe(false);
+      expect(isAllUpperCase('BoB')).toBe(false);
     });
   });
 

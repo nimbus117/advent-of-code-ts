@@ -1,7 +1,7 @@
 import { allTrue, anyTrue, repeat } from '.';
 import { map } from '../Array';
 import { isOdd } from '../Number';
-import { isCapitalized, isLengthAtLeast } from '../String';
+import { isAllUpperCase, isLengthAtLeast } from '../String';
 
 describe('shared.Function', () => {
   describe('anyPass', () => {
@@ -18,22 +18,21 @@ describe('shared.Function', () => {
   });
 
   describe('allPass', () => {
-    const isName = allTrue([isCapitalized, isLengthAtLeast(2)]);
+    const isUpperCaseName = allTrue([isAllUpperCase, isLengthAtLeast(2)]);
 
     it('returns true if ALL function tests return true', () => {
-      expect(isName('Bob')).toBe(true);
+      expect(isUpperCaseName('BOB')).toBe(true);
     });
 
     it('returns false if any of the function tests return false', () => {
-      expect(isName('bob')).toBe(false);
-      expect(isName('J')).toBe(false);
+      expect(isUpperCaseName('BOb')).toBe(false);
+      expect(isUpperCaseName('J')).toBe(false);
     });
 
     it('filters out all valid names from an array of strings', () => {
-      expect(['James', 'SaM', 'bob', 'Jo', 'A'].filter(isName)).toEqual([
-        'James',
-        'Jo',
-      ]);
+      expect(
+        ['JAMES', 'SaM', 'bob', 'JO', 'A'].filter(isUpperCaseName)
+      ).toEqual(['JAMES', 'JO']);
     });
   });
 
@@ -45,11 +44,13 @@ describe('shared.Function', () => {
 
     it('repeats the add1 function 100 times for each number in the array', () => {
       const doubleChars = map((x: string) => x + x);
-      expect(repeat(5, doubleChars)(['a', 'b', 'c'])).toStrictEqual([
+      const input = ['a', 'b', 'c'];
+      expect(repeat(5, doubleChars)(input)).toStrictEqual([
         'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
         'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
         'cccccccccccccccccccccccccccccccc',
       ]);
+      expect(input).toStrictEqual(['a', 'b', 'c']);
     });
   });
 });
