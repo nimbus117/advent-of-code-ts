@@ -5,15 +5,8 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-  ],
-  plugins: ['prettier', '@typescript-eslint'],
-  rules: {
-    'prettier/prettier': 'warn',
-  },
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  plugins: ['@typescript-eslint'],
   overrides: [
     {
       files: ['src/**/*.test.ts'],

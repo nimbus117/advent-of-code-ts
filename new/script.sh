@@ -20,7 +20,7 @@ mkdir -p $path
 
 cp ./new/templates/* $path
 
-sed -i "s/{{year}}/$1/" $test
-sed -i "s/{{day}}/$2/" $test
+gsed -i "s/{{year}}/$1/" $test
+gsed -i "s/{{day}}/$2/" $test
 
-echo -ne '\ekvim\e\\'; vim -p $index $test $input
+nvim -p $index $test $input
