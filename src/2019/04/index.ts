@@ -1,5 +1,5 @@
 import { filter, map, range } from '@shared/Array';
-import { Predicate, allTrue, pipe } from '@shared/Function';
+import { Predicate, all, pipe } from '@shared/Function';
 import { count } from '@shared/Number';
 
 const hasNoDecreasing = (digitArray: number[]) =>
@@ -25,7 +25,7 @@ const buildValidator = (validators: Predicate<number[]>[]) => (input: string) =>
   pipe(input)
     ._(getPasswordRange)
     ._(map(toDigitArray))
-    ._(filter(allTrue(validators)))
+    ._(filter(all(validators)))
     ._(count).$;
 
 export const part1 = buildValidator([hasNoDecreasing, hasAtLeast2Adjacent]);

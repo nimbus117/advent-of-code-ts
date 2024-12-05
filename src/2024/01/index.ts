@@ -10,10 +10,10 @@ const parseIds = ([l, r]: number[][], cur: string) => {
   return [l, r];
 };
 
-const difference = ([l, r]: number[][]) =>
+const getDifferences = ([l, r]: number[][]) =>
   l.map((id, i) => Math.abs(id - r[i]));
 
-const similarity = ([l, r]: number[][]) =>
+const getSimilarities = ([l, r]: number[][]) =>
   l.map((lId) => lId * r.filter((rId) => lId === rId).length);
 
 export const part1 = (input: string) =>
@@ -21,12 +21,12 @@ export const part1 = (input: string) =>
     ._(parseLinesOfStrings)
     ._(reduceI(parseIds, [[], []]))
     ._(map(sort()))
-    ._(difference)
+    ._(getDifferences)
     ._(sum).$;
 
 export const part2 = (input: string) =>
   pipe(input)
     ._(parseLinesOfStrings)
     ._(reduceI(parseIds, [[], []]))
-    ._(similarity)
+    ._(getSimilarities)
     ._(sum).$;

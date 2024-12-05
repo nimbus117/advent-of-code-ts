@@ -1,18 +1,15 @@
-import { all, filter, map } from '@shared/Array';
-import { anyTrue, pipe } from '@shared/Function';
+import { every, filter, map } from '@shared/Array';
+import { any, pipe } from '@shared/Function';
 import { count } from '@shared/Number';
 import { parseLinesOfStrings } from '@shared/ParseInput';
 
 const parseReport = (x: string) =>
   parseLinesOfStrings(x).map((y) => y.split(' ').map(Number));
 
-const increasing = (x: number, i: number, arr: number[]) =>
-  !i || (x > arr[i - 1] && x < arr[i - 1] + 4);
-
-const decreasing = (x: number, i: number, arr: number[]) =>
-  !i || (x < arr[i - 1] && x > arr[i - 1] - 4);
-
-const isSafe = anyTrue([all(increasing), all(decreasing)]);
+const isSafe = any<number[]>([
+  every((x, i, arr) => !i || (x > arr[i - 1] && x < arr[i - 1] + 4)),
+  every((x, i, arr) => !i || (x < arr[i - 1] && x > arr[i - 1] - 4)),
+]);
 
 const isSafeWithDampner = (report: number[]) =>
   isSafe(report) || report.some((_, i) => isSafe(report.toSpliced(i, 1)));

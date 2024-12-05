@@ -1,11 +1,11 @@
-import { allTrue, anyTrue, repeat } from '.';
+import { all, any, repeat } from '.';
 import { map } from '../Array';
 import { isOdd } from '../Number';
 import { isAllUpperCase, isLengthAtLeast } from '../String';
 
 describe('shared.Function', () => {
-  describe('anyPass', () => {
-    const isForbidden = anyTrue([(x: number) => x > 10, isOdd]);
+  describe('any', () => {
+    const isForbidden = any([(x: number) => x > 10, isOdd]);
 
     it('returns true if ANY function test returns true', () => {
       expect(isForbidden(5)).toBe(true);
@@ -17,8 +17,8 @@ describe('shared.Function', () => {
     });
   });
 
-  describe('allPass', () => {
-    const isUpperCaseName = allTrue([isAllUpperCase, isLengthAtLeast(2)]);
+  describe('all', () => {
+    const isUpperCaseName = all([isAllUpperCase, isLengthAtLeast(2)]);
 
     it('returns true if ALL function tests return true', () => {
       expect(isUpperCaseName('BOB')).toBe(true);
@@ -42,7 +42,7 @@ describe('shared.Function', () => {
       expect(repeat(100, add1)(0)).toBe(100);
     });
 
-    it('repeats the add1 function 100 times for each number in the array', () => {
+    it('repeats the doubleChars function 5 times for each character in the array', () => {
       const doubleChars = map((x: string) => x + x);
       const input = ['a', 'b', 'c'];
       expect(repeat(5, doubleChars)(input)).toStrictEqual([

@@ -2,12 +2,12 @@ export { pipe, Pipe } from './pipe';
 
 export type Predicate<T> = (input: T) => boolean;
 
-export const allTrue =
+export const all =
   <T>(predicates: Predicate<T>[]) =>
   (input: T) =>
     predicates.every((predicate) => predicate(input));
 
-export const anyTrue =
+export const any =
   <T>(predicates: Predicate<T>[]) =>
   (input: T) =>
     predicates.some((predicate) => predicate(input));

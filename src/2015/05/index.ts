@@ -1,7 +1,7 @@
-import { Predicate, allTrue } from '@shared/Function';
+import { Predicate, all } from '@shared/Function';
 import { parseLinesOfStrings } from '@shared/ParseInput';
 
-const isNice1 = allTrue<string>([
+const isNice1 = all<string>([
   (x) => /(\w*[aeuio]\w*){3,}/.test(x),
 
   (x) => x.split('').some((y, i, a) => y === a[i + 1]),
@@ -9,7 +9,7 @@ const isNice1 = allTrue<string>([
   (x) => ['ab', 'cd', 'pq', 'xy'].every((y) => !x.includes(y)),
 ]);
 
-const isNice2 = allTrue<string>([
+const isNice2 = all<string>([
   (x) => x.split('').some((y, i, a) => x.slice(i + 2).includes(y + a[i + 1])),
 
   (x) => x.split('').some((y, i, a) => y === a[i + 2]),

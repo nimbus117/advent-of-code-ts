@@ -4,12 +4,10 @@ export const first = <T>(array: T[]) => array[0];
 
 export const last = <T>(array: T[]) => array[array.length - 1];
 
-export function map<T, O>(
-  fn: (item: T, index: number, array: T[]) => O,
-  thisArg?: unknown
-) {
-  return (array: T[]) => array.map(fn, thisArg);
-}
+export const map =
+  <T, O>(fn: (item: T, index: number, array: T[]) => O, thisArg?: unknown) =>
+  (array: T[]) =>
+    array.map(fn, thisArg);
 
 export const filter =
   <T>(fn: (item: T, index: number, array: T[]) => boolean, thisArg?: unknown) =>
@@ -21,8 +19,6 @@ export const reduce =
   (array: T[]) =>
     array.reduce(fn);
 
-[].map((x) => x);
-
 // reduce with Initial value
 export const reduceI =
   <T, O>(
@@ -32,12 +28,12 @@ export const reduceI =
   (array: T[]) =>
     array.reduce(fn, initialValue);
 
-export const any =
+export const some =
   <T>(fn: (item: T, index: number, array: T[]) => boolean, thisArg?: unknown) =>
   (array: T[]) =>
     array.some(fn, thisArg);
 
-export const all =
+export const every =
   <T>(fn: (item: T, index: number, array: T[]) => boolean, thisArg?: unknown) =>
   (array: T[]) =>
     array.every(fn, thisArg);

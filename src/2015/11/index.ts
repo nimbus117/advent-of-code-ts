@@ -1,11 +1,11 @@
 import { map } from '@shared/Array';
-import { allTrue, pipe } from '@shared/Function';
+import { all, pipe } from '@shared/Function';
 import { parseLineOfCharacters } from '@shared/ParseInput';
 
 const charToNumber = (x: string) => x.charCodeAt(0) - 97;
 const numberToCar = (x: number) => String.fromCharCode(x + 97);
 
-const isValidPasword = allTrue<number[]>([
+const isValidPasword = all<number[]>([
   (p) => ![8, 11, 14].some((y) => p.includes(y)),
   (p) => p.some((c, i) => p[i + 1] === c + 1 && p[i + 2] === c + 2),
   (p) =>

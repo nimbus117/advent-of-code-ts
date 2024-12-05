@@ -2,8 +2,8 @@ import { pipe } from '../Function';
 import { MapWithDefault } from '../Map';
 import { isEven } from '../Number';
 import {
-  all,
-  any,
+  every,
+  some,
   chunk,
   filter,
   find,
@@ -115,36 +115,36 @@ describe('shared.Array', () => {
 
   describe('any', () => {
     it('should return true if any values in the array are even', () => {
-      const areAnyEven = any(isEven);
+      const areAnyEven = some(isEven);
       expect(areAnyEven([1, 2, 3, 4])).toEqual(true);
     });
 
     it('should return false if none of the values in the array are even', () => {
-      const areAnyEven = any(isEven);
+      const areAnyEven = some(isEven);
       expect(areAnyEven([1, 3, 5])).toEqual(false);
     });
 
     it('should return true if any values in the array can be found in the set', () => {
       const letters = new Set(['a', 'b']);
-      const hasAnyLetters = any(letters.has, letters);
+      const hasAnyLetters = some(letters.has, letters);
       expect(hasAnyLetters(['a', 'b', 'c'])).toEqual(true);
     });
   });
 
   describe('all', () => {
     it('should return true if all values in the array are even', () => {
-      const areAllEven = all(isEven);
+      const areAllEven = every(isEven);
       expect(areAllEven([2, 4, 6, 8])).toEqual(true);
     });
 
     it('should return false if any of the values in the array are NOT even', () => {
-      const areAllEven = all(isEven);
+      const areAllEven = every(isEven);
       expect(areAllEven([2, 4, 5, 8])).toEqual(false);
     });
 
     it('should return true if all values in the array can be found in the set', () => {
       const letters = new Set(['a', 'b', 'c']);
-      const hasAllLetters = all(letters.has, letters);
+      const hasAllLetters = every(letters.has, letters);
       expect(hasAllLetters(['a', 'b', 'c'])).toEqual(true);
     });
   });
