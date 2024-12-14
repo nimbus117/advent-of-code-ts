@@ -20,13 +20,13 @@ describe('2024 04', () => {
   });
 
   test('part2', () => {
-    expect(part2(input)).toBe('');
+    expect(part2(input)).toBe(9);
   });
 
   test('final', async () => {
     const input = await readFile(`./src/2024/04/input`, 'utf8');
 
-    expect(part1(input)).toBe('');
-    expect(part2(input)).toBe('');
+    expect(part1(input)).toBe(2517);
+    expect(part2(input)).toBe(1960);
   });
 });
