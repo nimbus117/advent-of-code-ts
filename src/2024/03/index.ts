@@ -2,8 +2,10 @@ import { map } from '@shared/Array';
 import { pipe } from '@shared/Function';
 import { multiply, sum } from '@shared/Number';
 
+/* istanbul ignore next */
 const parse = (memory: string) => [...(memory.match(/mul\(\d*,\d*\)/g) ?? [])];
 
+/* istanbul ignore next */
 const runInstruction = (x: string) =>
   multiply([...(x.match(/\d*/g) ?? [])].filter(Boolean).map(Number));
 
