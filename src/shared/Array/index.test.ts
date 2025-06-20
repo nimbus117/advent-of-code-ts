@@ -65,8 +65,25 @@ describe('shared.Array', () => {
       expect(range(5, 1)).toEqual([5, 4, 3, 2, 1]);
     });
 
-    it('should return an array of ascending numbers from 1 to the given number', () => {
+    it('should return an array of ascending numbers from 1 to the given single number when positive', () => {
       expect(range(5)).toEqual([1, 2, 3, 4, 5]);
+    });
+
+    it('should return an array of descending numbers from -1 to the given single number when negative', () => {
+      expect(range(-5)).toEqual([-1, -2, -3, -4, -5]);
+    });
+
+    it('should return an array of ascending numbers from 0 to the given number when positive', () => {
+      expect(range(0, 5)).toEqual([0, 1, 2, 3, 4, 5]);
+    });
+
+    it('should return an array of descending numbers from 0 to the given number when negative', () => {
+      expect(range(0, -5)).toEqual([0, -1, -2, -3, -4, -5]);
+    });
+
+    it('should return an array containing 0', () => {
+      expect(range(0)).toEqual([0]);
+      expect(range(0, 0)).toEqual([0]);
     });
   });
 

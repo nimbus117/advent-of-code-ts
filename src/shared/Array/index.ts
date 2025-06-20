@@ -102,7 +102,9 @@ export const chunk =
     );
 
 export const range = (a: number, b?: number) => {
-  const [start, end] = b !== undefined ? [a, b] : [1, a];
+  if (a === 0 && b === undefined) return [0];
+
+  const [start, end] = b !== undefined ? [a, b] : [a > 0 ? 1 : -1, a];
 
   const fn: (_: unknown, i: number) => number =
     end > start ? (_, i) => i + start : (_, i) => start - i;
