@@ -1,4 +1,4 @@
-import { flat, map, create } from '@shared/Array';
+import { flat, map } from '@shared/Array';
 import { pipe } from '@shared/Function';
 import { max, sum } from '@shared/Number';
 import { parseLinesOfStrings } from '@shared/ParseInput';
@@ -20,7 +20,8 @@ const parseInstruction = (instruction: string): Instruction => {
   };
 };
 
-const createGrid = () => create(1000).map(() => create(1000).map(() => 0));
+const createGrid = () =>
+  Array.from({ length: 1000 }, () => Array.from({ length: 1000 }, () => 0));
 
 const setupLights =
   (getNewValue: GetNewValue) => (instructions: Instruction[]) =>

@@ -90,14 +90,10 @@ export const groupBy =
 export const transpose = <T>(array: T[][]) =>
   array[0].map((_, i) => array.map((row) => row[i]));
 
-export const create = (length: number): undefined[] => [
-  ...Array(Math.abs(length)),
-];
-
 export const chunk =
   <T>(size: number) =>
   (array: T[]) =>
-    create(Math.ceil(array.length / size)).map((_, i) =>
+    Array.from({ length: Math.ceil(array.length / size) }, (_, i) =>
       array.slice(size * i, size * i + size)
     );
 
@@ -105,9 +101,8 @@ export const range = (a: number, b?: number) => {
   if (a === 0 && b === undefined) return [0];
 
   const [start, end] = b !== undefined ? [a, b] : [a > 0 ? 1 : -1, a];
+  const length = Math.abs(end - start) + 1;
+  const step = start < end ? 1 : -1;
 
-  const fn: (_: unknown, i: number) => number =
-    end > start ? (_, i) => i + start : (_, i) => start - i;
-
-  return create(Math.abs(start - end) + 1).map(fn);
+  return Array.from({ length }, (_, i) => start + i * step);
 };

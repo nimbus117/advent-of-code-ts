@@ -1,3 +1,5 @@
+export type Primitive = string | number | symbol;
+
 export type TupleMut<
   T,
   N extends number,
