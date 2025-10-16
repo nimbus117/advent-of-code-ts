@@ -1,6 +1,6 @@
 import { filter, map } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { multiply, sum } from '@shared/Number';
+import { product, sum } from '@shared/Number';
 import { get } from '@shared/Object';
 import { parseLinesOfStrings } from '@shared/ParseInput';
 
@@ -36,7 +36,7 @@ const getPower = (game: Game) => {
     });
     return acc;
   }, {});
-  return multiply(Object.values(x));
+  return product(Object.values(x));
 };
 
 export const part1 = (input: string) =>

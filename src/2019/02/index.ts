@@ -1,12 +1,12 @@
 import { first } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { multiply, sum } from '@shared/Number';
+import { product, sum } from '@shared/Number';
 import { parseCommaSeparatedLineOfNumbers } from '@shared/ParseInput';
 
 const runProgram = (p: number[]) => {
   for (let i = 0; i < p.length; i = i + 4) {
     if (p[i] === 99) break;
-    const operation = p[i] === 1 ? sum : multiply;
+    const operation = p[i] === 1 ? sum : product;
     p[p[i + 3]] = operation([p[p[i + 1]], p[p[i + 2]]]);
   }
   return p;

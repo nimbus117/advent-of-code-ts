@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type Curried<T extends (...args: any[]) => any> = <P extends any[]>(
+type FunctionWithArgs = (...args: any[]) => any;
+
+type Curried<T extends FunctionWithArgs> = <P extends any[]>(
   ...args: P
 ) => Parameters<T> extends [...P, ...infer S]
   ? S extends []
@@ -7,7 +9,7 @@ type Curried<T extends (...args: any[]) => any> = <P extends any[]>(
     : Curried<(...args: S) => ReturnType<T>>
   : never;
 
-export function curry<T extends (...args: any[]) => any>(fn: T): Curried<T> {
+export function curry<T extends FunctionWithArgs>(fn: T): Curried<T> {
   return function curried(...args: any[]): any {
     if (args.length >= fn.length) {
       return fn(...args);

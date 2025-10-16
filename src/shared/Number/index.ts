@@ -1,3 +1,5 @@
+import { curry } from '../Curry';
+
 export { count, Countable } from './count';
 
 export const isEven = (number: number) => !(number % 2);
@@ -9,12 +11,18 @@ export const roundTo = (decimalPlaces: number) => (number: number) => {
   return Math.round(number * power) / power;
 };
 
+const _add = (a: number, b: number) => a + b;
+export const add = curry(_add);
+
+const _multiply = (a: number, b: number) => a * b;
+export const multiply = curry(_multiply);
+
 // arrays of numbers
 
 export const max = (arr: number[]) => arr.reduce((a, b) => (a > b ? a : b));
 
 export const min = (arr: number[]) => arr.reduce((a, b) => (a < b ? a : b));
 
-export const multiply = (arr: number[]) => arr.reduce((a, b) => a * b, 1);
+export const product = (arr: number[]) => arr.reduce(_multiply, 1);
 
-export const sum = (arr: number[]) => arr.reduce((a, b) => a + b, 0);
+export const sum = (arr: number[]) => arr.reduce(_add, 0);

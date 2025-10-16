@@ -1,10 +1,10 @@
 import { pipe } from '.';
-import { isEven, sum } from '../Number';
+import { add, isEven, sum } from '../Number';
 import { map } from '../Array';
 
 describe('shared.Function', () => {
   describe('pipe', () => {
-    const add2 = (num: number) => num + 2;
+    const add2 = add(2);
 
     it('should call each function in turn, passing the output from each as input to the next', () => {
       const result = pipe(['1', '2', '3', '4', '5', '6', '7'])

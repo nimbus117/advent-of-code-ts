@@ -1,6 +1,6 @@
 import { filter, flatMap, map } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { multiply, sum } from '@shared/Number';
+import { product, sum } from '@shared/Number';
 import { parseArraysOfNumbers } from '@shared/ParseInput';
 
 const getAdjacent = (grid: number[][], x: number, y: number) => {
@@ -44,5 +44,5 @@ export const part2 = (input: string) => {
 
   heightMap.forEach((y, yI) => y.forEach((x, xI) => basinSize(xI, yI, x)));
 
-  return multiply(basinSizes.sort((a, b) => b - a).slice(0, 3));
+  return product(basinSizes.sort((a, b) => b - a).slice(0, 3));
 };

@@ -1,4 +1,15 @@
-import { count, isEven, isOdd, max, min, multiply, roundTo, sum } from '.';
+import {
+  count,
+  isEven,
+  isOdd,
+  max,
+  min,
+  product,
+  roundTo,
+  sum,
+  add,
+  multiply,
+} from '.';
 import { MapWithDefault } from '../Map';
 
 describe('shared.Number', () => {
@@ -40,9 +51,9 @@ describe('shared.Number', () => {
     });
   });
 
-  describe('multiply', () => {
+  describe('product', () => {
     it('should multiply all the numbers in an array', () => {
-      expect(multiply([1, 2, 3, 4, 5])).toEqual(120);
+      expect(product([1, 2, 3, 4, 5])).toEqual(120);
     });
   });
 
@@ -97,6 +108,20 @@ describe('shared.Number', () => {
   describe('roundTo', () => {
     it('should round the number to 3 decimal places', () => {
       expect(roundTo(3)(1.3456)).toEqual(1.346);
+    });
+  });
+
+  describe('add', () => {
+    it('should add two numbers together', () => {
+      expect(add(3, 4)).toEqual(7);
+      expect(add(3)(4)).toEqual(7);
+    });
+  });
+
+  describe('multiply', () => {
+    it('should add two numbers together', () => {
+      expect(multiply(3, 4)).toEqual(12);
+      expect(multiply(3)(4)).toEqual(12);
     });
   });
 });

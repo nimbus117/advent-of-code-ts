@@ -1,6 +1,6 @@
 import { map, slice, sort } from '@shared/Array';
 import { pipe } from '@shared/Function';
-import { multiply } from '@shared/Number';
+import { product } from '@shared/Number';
 import { parseLinesOfStrings } from '@shared/ParseInput';
 import { trim } from '@shared/String';
 
@@ -46,7 +46,7 @@ class Game {
   }
 
   rounds(count: number, useLcm?: boolean) {
-    const lcm = useLcm ? multiply(this.monkeys.map((m) => m.divBy)) : undefined;
+    const lcm = useLcm ? product(this.monkeys.map((m) => m.divBy)) : undefined;
     for (let i = 0; i < count; i++) {
       this.monkeys.forEach((m) =>
         m.turn(lcm).forEach((t) => this.monkeys[t.target].items.push(t.item))
@@ -60,7 +60,7 @@ class Game {
       ._(map((x) => x.inspected))
       ._(sort((a, b) => a - b))
       ._(slice(-2))
-      ._(multiply).$;
+      ._(product).$;
 }
 
 export const part1 = (input: string) =>

@@ -1,4 +1,4 @@
-import { multiply } from '@shared/Number';
+import { product } from '@shared/Number';
 import { parseArraysOfNumbers } from '@shared/ParseInput';
 
 type Set = (n: number) => number;
@@ -51,5 +51,5 @@ export const part1 = (input: string) =>
 
 export const part2 = (input: string) =>
   checkTrees(input, (i, j, trees, result) =>
-    Math.max(result, multiply(checks.map((x) => x(i, j, trees).score)))
+    Math.max(result, product(checks.map((x) => x(i, j, trees).score)))
   );
