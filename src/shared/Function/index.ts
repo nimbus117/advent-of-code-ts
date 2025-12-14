@@ -15,7 +15,7 @@ export const any =
 export const repeat =
   <T>(times: number, fn: (input: T) => T) =>
   (input: T) => {
-    let state = structuredClone(input);
-    for (let i = 0; i < times; i++) state = fn(state);
-    return state;
+    let _input = structuredClone(input);
+    for (let i = 0; i < times; i++) _input = fn(_input);
+    return _input;
   };

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 type FunctionWithArgs = (...args: any[]) => any;
 
 type Curried<T extends FunctionWithArgs> = <P extends any[]>(
@@ -17,4 +18,3 @@ export function curry<T extends FunctionWithArgs>(fn: T): Curried<T> {
     return (...args2: any[]) => curried(...args, ...args2);
   };
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */

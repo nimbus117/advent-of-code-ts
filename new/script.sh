@@ -20,7 +20,7 @@ mkdir -p $path
 
 cp ./new/templates/* $path
 
-gsed -i "s/{{year}}/$1/" $test
-gsed -i "s/{{day}}/$2/" $test
+sed -i "s/{{year}}/$1/" $test
+sed -i "s/{{day}}/$2/" $test
 
 nvim -p $index $test $input
