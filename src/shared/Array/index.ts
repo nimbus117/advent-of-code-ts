@@ -4,6 +4,11 @@ export const first = <T>(array: T[]) => array[0];
 
 export const last = <T>(array: T[]) => array[array.length - 1];
 
+export const at =
+  <T>(index: number) =>
+  (array: Array<T>) =>
+    array.at(index);
+
 export const map =
   <T, O>(fn: (item: T, index: number, array: T[]) => O, thisArg?: unknown) =>
   (array: T[]) =>
@@ -67,7 +72,7 @@ export const slice =
   (array: T[]) =>
     array.slice(start, end);
 
-export const reverse = <T>(array: T[]) => array.slice().reverse();
+export const reverse = <T>(array: T[]) => array.toReversed();
 
 export const includes =
   <T>(searchElement: T) =>
@@ -102,7 +107,7 @@ export const range = (a: number, b?: number) => {
 
   const [start, end] = b !== undefined ? [a, b] : [a > 0 ? 1 : -1, a];
   const length = Math.abs(end - start) + 1;
-  const step = start < end ? 1 : -1;
+  const sign = start < end ? 1 : -1;
 
-  return Array.from({ length }, (_, i) => start + i * step);
+  return Array.from({ length }, (_, i) => start + i * sign);
 };

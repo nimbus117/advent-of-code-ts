@@ -1,10 +1,9 @@
-import { reduceI } from '@shared/Array';
+import { at, reduceI } from '@shared/Array';
 import { pipe } from '@shared/Function';
 import { parseLinesOfStrings } from '@shared/ParseInput';
-import { Tuple } from '@shared/Types';
 
 // [current, zeroCount]
-type Result = Tuple<number, 2>;
+type Result = [number, number];
 
 const parse = (input: string) =>
   parseLinesOfStrings(input).map((x) =>
@@ -38,9 +37,11 @@ const incrementDial = ([current, zeroCount]: Result, move: number): Result => {
 export const part1 = (input: string) =>
   pipe(input)
     ._(parse)
-    ._(reduceI(moveDial, [50, 0])).$[1];
+    ._(reduceI(moveDial, [50, 0]))
+    ._(at(1)).$;
 
 export const part2 = (input: string) =>
   pipe(input)
     ._(parse)
-    ._(reduceI(incrementDial, [50, 0])).$[1];
+    ._(reduceI(incrementDial, [50, 0]))
+    ._(at(1)).$;

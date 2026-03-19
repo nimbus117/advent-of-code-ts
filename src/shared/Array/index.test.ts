@@ -2,6 +2,7 @@ import { pipe } from '../Function';
 import { MapWithDefault } from '../Map';
 import { isEven } from '../Number';
 import {
+  at,
   every,
   some,
   chunk,
@@ -26,22 +27,6 @@ import {
 } from '.';
 
 describe('shared.Array', () => {
-  describe('transpose', () => {
-    it('should flip the matrix over its diagonal', () => {
-      expect(
-        transpose([
-          [1, 2, 3],
-          [1, 2, 3],
-          [1, 2, 3],
-        ])
-      ).toEqual([
-        [1, 1, 1],
-        [2, 2, 2],
-        [3, 3, 3],
-      ]);
-    });
-  });
-
   describe('first', () => {
     it('should return the first item in an array', () => {
       expect(first([1, 2, 3, 4, 5])).toEqual(1);
@@ -53,6 +38,14 @@ describe('shared.Array', () => {
     it('should return the last item in an array', () => {
       expect(last([1, 2, 3, 4, 5])).toEqual(5);
       expect(last(['a', 'b', 'c', 'd', 'e'])).toEqual('e');
+    });
+  });
+
+  describe('at', () => {
+    it('should return the item at the given index in an array', () => {
+      expect(at(2)([1, 2, 3, 4, 5])).toEqual(3);
+      expect(at(0)(['a', 'b', 'c', 'd', 'e'])).toEqual('a');
+      expect(at(5)([])).toBeUndefined();
     });
   });
 
@@ -326,6 +319,22 @@ describe('shared.Array', () => {
       expect(chunk(3)([5, 4, 3, 2, 1])).toEqual([
         [5, 4, 3],
         [2, 1],
+      ]);
+    });
+  });
+
+  describe('transpose', () => {
+    it('should flip the matrix over its diagonal', () => {
+      expect(
+        transpose([
+          [1, 2, 3],
+          [1, 2, 3],
+          [1, 2, 3],
+        ])
+      ).toEqual([
+        [1, 1, 1],
+        [2, 2, 2],
+        [3, 3, 3],
       ]);
     });
   });

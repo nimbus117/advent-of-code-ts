@@ -3,9 +3,9 @@ import { pipe } from '@shared/Function';
 import { MapWithDefault } from '@shared/Map';
 import { count } from '@shared/Number';
 import { parseLinesOfStrings } from '@shared/ParseInput';
-import { TupleMut } from '@shared/Types';
 
-type Line = TupleMut<TupleMut<number, 2>, 2>;
+type Point = [number, number];
+type Line = [Point, Point];
 
 const parseLines = (input: string) =>
   parseLinesOfStrings(input).map((line) =>

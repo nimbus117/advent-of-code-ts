@@ -3,9 +3,8 @@ import { pipe } from '@shared/Function';
 import { count } from '@shared/Number';
 import { get } from '@shared/Object';
 import { parseLineOfCharacters } from '@shared/ParseInput';
-import { Tuple } from '@shared/Types';
 
-type House = Tuple<number, 2>;
+type House = [number, number];
 type Result1 = { current: House; visited: Set<string> };
 type Result2 = {
   santa: House;

@@ -1,5 +1,3 @@
-import { Tuple } from '@shared/Types';
-
 export type CaveName = string;
 
 export type Cave = {
@@ -8,7 +6,7 @@ export type Cave = {
   connected: Cave[];
 };
 
-export type Connection = Tuple<CaveName, 2>;
+export type Connection = [CaveName, CaveName];
 
 export type CaveMap = Map<CaveName, Cave>;
 
