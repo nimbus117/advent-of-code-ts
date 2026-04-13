@@ -6,10 +6,11 @@ export const isEven = (number: number) => !(number % 2);
 
 export const isOdd = (number: number) => !isEven(number);
 
-export const roundTo = (decimalPlaces: number) => (number: number) => {
+const _roundTo = (decimalPlaces: number, number: number) => {
   const power = Math.pow(10, decimalPlaces);
   return Math.round(number * power) / power;
 };
+export const roundTo = curry(_roundTo);
 
 const _add = (a: number, b: number) => a + b;
 export const add = curry(_add);

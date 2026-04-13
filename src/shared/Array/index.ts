@@ -1,13 +1,12 @@
+import { curry } from '../Curry';
 import { Obj } from '../Object';
 
 export const first = <T>(array: T[]) => array[0];
 
 export const last = <T>(array: T[]) => array[array.length - 1];
 
-export const at =
-  <T>(index: number) =>
-  (array: Array<T>) =>
-    array.at(index);
+const _at = <T>(index: number, array: Array<T>) => array.at(index);
+export const at = curry(_at);
 
 export const map =
   <T, O>(fn: (item: T, index: number, array: T[]) => O, thisArg?: unknown) =>
